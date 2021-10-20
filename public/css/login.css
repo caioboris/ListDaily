@@ -1,0 +1,135 @@
+* {
+    font-family: 'Montserrat', sans-serif;
+    font-size: 16px;
+}
+
+body {
+    background-color: #1a1a1a;
+    margin: 0;
+    padding-left: 30%;
+    padding-right: 30%;
+    padding-top: 2%;
+    padding-bottom: 2%;
+}
+
+h1 {
+    font-size: 2rem;
+    color: #00ff80;
+    text-shadow: 1px 2px 3px rgba(30, 30, 30, 1);
+}
+
+img {
+    display: block;
+    position: relative;
+    margin-left: auto;
+    margin-right: auto;
+    width: 8rem;
+    height: 8rem;
+}
+
+div {
+    background-color: white !important;
+    position: relative;
+    margin: auto;
+    padding: 4rem;
+    padding-top: 2.5rem;
+    border-radius: 15px;
+    color: #1a1a1a;
+    margin-top: 5%;
+    text-align: center;
+}
+
+a {
+    text-decoration: none;
+    color: #1a1a1a;
+}
+
+a:hover {
+    text-decoration: underline #00ff80;
+}
+
+input {
+    padding: 15px;
+    border: none;
+    outline: none;
+    font-size: 15px;
+    width: 100%;
+    background-color: #1a1a1a;
+    color: #00ff80;
+}
+
+button {
+    background-color: #00ff80;
+    border: none;
+    padding: 15px;
+    width: 95%;
+    border-radius: 10px;
+    color: #1a1a1a;
+    font-weight: 700;
+    font-size: 15px;
+    cursor: pointer;
+    transition-property: width, margin, background-color, color;
+    transition: 0.3s ease;
+}
+
+button:hover {
+    width: 100%;
+    margin: 0;
+    background-color: #1a1a1a;
+    color: #00ff80;
+}
+
+@media (max-width: 600px) {
+    *{
+        font-size: 8px;
+    }
+    body{
+        padding-left: 10%;
+        padding-right: 10%;
+    }
+    h1{
+        font-size: 3rem;
+    }
+    a{
+        font-size: 1.4rem;
+    }
+    img{
+        width: 13rem;
+        height: 13rem;
+    }
+    p{
+        font-size: 1.3rem;
+    }
+    #email{
+        width: fit-content;
+    }
+    #password{
+        width: fit-content;
+    }
+    #password-confirm{
+        width: fit-content;
+    }
+    label{
+        font-size: 1.7rem;
+    }
+}
+
+/*ScrollBar*/
+::-webkit-scrollbar{
+    width: 7px;
+    height: 7px;
+    }
+    ::-webkit-scrollbar-thumb{
+    background: linear-gradient(308deg, #00FF80 9%,#00ff80 84%);
+    border-radius: 10px;
+    }
+    ::-webkit-scrollbar-thumb:hover{
+    background: linear-gradient(13deg, #35a86f 8%,#35A86F 87%);
+    }
+    ::-webkit-scrollbar-track{
+    background: #000000;
+    border: 5px solid #242424;
+    border-radius: 0px;
+    }
+
+    
