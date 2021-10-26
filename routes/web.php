@@ -21,8 +21,15 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
+Route::get('/minhasListas/{id}', [App\Http\Controllers\ProdutoController::class, 'show'])->name('lista');
+
 Route::get('/admin', [App\Http\Controllers\AuthController::class, 'dashboard'])->name('admin');
 
 Route::get('/admin/login', [App\Http\Controllers\AuthController::class, 'showLoginForm'])->name('admin.login');
 
 Route::get('/admin/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('admin.logout');
+
+
+
+
+
