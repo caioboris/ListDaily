@@ -10,7 +10,6 @@ class AuthController extends Controller
     public function dashboard()
     {
         if(Auth::check() === true){
-            dd(Auth::user());
             return view('admin.dashboard');
         }
 

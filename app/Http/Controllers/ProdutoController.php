@@ -34,9 +34,30 @@ class ProdutoController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
+    public function adicionar(Request $request)
     {
-        //
+        $this->middleware('auth');
+
+        $this->validate($request,[
+            'nome_produto'=> 'required',
+            'marca_produto' => 'required',
+            'quantidade' => 'required',
+            'peso' => 'required',
+            'medida'=> 'required'
+        ]);
+
+            $produto = new Produto;
+
+            $produto->user_id = Auth::user()->id;
+            $produto->pdt_nome= $request->input('nome_produto');
+            $produto->pdt_marca= $request->input('marca_produto');
+            $produto->pdt_quantidade= $request->input('quantidade');
+            $produto->pdt_peso= $request->input('peso');
+            $produto->pdt_medida= $request->input('medida');
+
+            $produto->save();
+
+            return redirect('home');
     }
 
     /**
@@ -47,6 +68,8 @@ class ProdutoController extends Controller
      */
     public function showEstoque($id)
     {
+        $this->middleware('auth');
+
         $user = User::where('id',$id)->first();
 
         $produtos = $user->produtos()->get();
@@ -59,6 +82,7 @@ class ProdutoController extends Controller
             }
         }
     }
+
 
 
     /**

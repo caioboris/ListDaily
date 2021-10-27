@@ -154,12 +154,12 @@ sup {
 }
 
 a {
-  color: #ff6961;
+  color: #0a0a0a;
   text-decoration: none;
   background-color: transparent;
 }
 a:hover {
-  color: #0a0a0a;
+  color: #ff6961;
   text-decoration:solid;
 }
 

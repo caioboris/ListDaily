@@ -17,6 +17,9 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
+Route::get('/estoque', [App\Http\Controllers\MedidaController::class,'index'])->name('estoque');
+Route::post('/estoque', [App\Http\Controllers\ProdutoController::class,'adicionar'])->name('estoque.adicionar');
+
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
