@@ -36,21 +36,6 @@
                     <!-- Left Side Of Navbar -->
                     <ul class="navbar-nav mr-auto">
 
-                        <li class="dropdown">
-                            <a href="#" class="dropdown-toggle" data-toggle="dropdown">
-                                {{ Config::get('languages')[App::getLocale()] }}
-                            </a>
-                            <ul class="dropdown-menu">
-                                @foreach (Config::get('languages') as $lang => $language)
-                                    @if ($lang != App::getLocale())
-                                        <li>
-                                            <a href="{{ route('lang.switch', $lang) }}">{{$language}}</a>
-                                        </li>
-                                    @endif
-                                @endforeach
-                            </ul>
-                        </li>
-
                     </ul>
 
                     <!-- Right Side Of Navbar -->
@@ -59,26 +44,26 @@
                         @guest
                             @if (Route::has('login'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('login') }}">@lang('welcome.login')</a>
+                                    <a class="nav-link" href="{{ route('login') }}">{{ __('Entrar') }}</a>
                                 </li>
                             @endif
 
                             @if (Route::has('register'))
                                 <li class="nav-item">
-                                    <a class="nav-link" href="{{ route('register') }}">@lang('welcome.register')</a>
+                                    <a class="nav-link" href="{{ route('register') }}">{{ __('Cadastre-se') }}</a>
                                 </li>
                             @endif
                         @else
                         <li class="nav-item dropdown">
-                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                            <a id="navbarDropdown" class="nav-link dropdown-toggle" href="#" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false" v-pre>
                                {{Auth::user()->name}}
                             </a>
+                            <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
                             <div class="dropdown-menu dropdown-menu-right" aria-labelledby="navbarDropdown">
-                                <a class="dropdown-item" href="{{ route('logout') }}">
+                                <a class="dropdown-item" href="{{ route('logout') }}"
+                                   onclick="document.getElementById('logout-form').submit();">
                                     {{ __('Logout') }}
                                 </a>
-                            </div>
-                        </li>
                         @endguest
                     </ul>
                 </div>

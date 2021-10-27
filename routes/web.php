@@ -32,7 +32,7 @@ Route::get('/admin/login', [App\Http\Controllers\AuthController::class, 'showLog
 
 Route::get('/admin/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('admin.logout');
 
-Route::get('lang/{lang}', [App\Http\Controllers\LanguageController::class, 'switchLang'])->name('lang.switch');
 
-Route::get('/logout', [App\Http\Controllers\AuthController::class, 'logout'])->name('logout');
+
+
 

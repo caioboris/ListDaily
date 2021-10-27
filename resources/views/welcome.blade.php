@@ -43,12 +43,12 @@
                         </div>
 
                     @auth
-                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">@lang('welcome.home')</a>
+                        <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Home</a>
                     @else
-                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">@lang('welcome.login')</a>
+                        <a href="{{ route('login') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">Entrar</a>
 
                         @if (Route::has('register'))
-                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">@lang('welcome.register')</a>
+                            <a href="{{ route('register') }}" class="ml-4 text-sm text-gray-700 dark:text-gray-500 underline">Cadastre-se</a>
                         @endif
                     @endauth
                 </div>
@@ -59,8 +59,8 @@
                         <img src="./img/logo.jpeg" width="300em" />
                 </div>
                 <div class="text-center">
-                    <h1>@lang('welcome.welcome_message')</h1>
-                    <h3>@lang('welcome.welcome_submessage')</h3>
+                    <h1>Bem-vindo ao List Daily</h1>
+                    <h3>A melhor plataforma de lista de compras e organização do Brasil</h3>
                 </div>
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                     <div class="grid grid-cols-1 md:grid-cols-2">
@@ -68,8 +68,8 @@
 
                             <div class="ml-12">
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    <h2>@lang('welcome.shoppinglist')</h2>
-                                    <p>@lang('welcome.shoppinglist_desc')</p>
+                                    <h2>Lista de Compras</h2>
+                                    <p>Monte sua lista de compras de forma dinâmica e fácil! <br>Com o List Daily, sua lista é montada automaticamente de acordo com o controle de estoque.</p>
                                 </div>
                             </div>
                         </div>
@@ -77,8 +77,8 @@
                         <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
                             <div class="ml-12">
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    <h2>@lang('welcome.stockcontrol')</h2>
-                                    <p>@lang('welcome.stockcontrol_desc')</p>
+                                    <h2>Controle de Estoque</h2>
+                                    <p>Facilite o controle de estoque local ao utilizar nossa aplicação, que lhe avisa quando algo está acabando e lhe auxilia a montar uma lista de compras.</p>
                                 </div>
                             </div>
                         </div>
@@ -86,8 +86,8 @@
                         <div class="p-6 border-t border-gray-200 dark:border-gray-700">
                             <div class="ml-12">
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    <h2>@lang('welcome.activitymanager')</h2>
-                                    <p>@lang('welcome.activitymanager_desc')</p>
+                                    <h2>Gerenciador de Atividades</h2>
+                                    <p>Registre e gerencie suas atividades através de nosso aplicativo, onde você pode registrar o quanto irá consumir de produtos e nossa aplicação desconta do estoque automaticamente!</p>
                                 </div>
                             </div>
                         </div>
@@ -95,8 +95,8 @@
                         <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-l">
                             <div class="ml-12">
                                 <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
-                                    <h2>@lang('welcome.organizelife')</h2>
-                                    <p>@lang('welcome.organizelife_desc')</p>
+                                    <h2>Organize sua vida</h2>
+                                    <p>Otimize seu tempo e organize sua casa ao mesmo tempo!</p>
                                 </div>
                             </div>
                         </div>
