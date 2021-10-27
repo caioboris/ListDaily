@@ -30,7 +30,7 @@ class HomeController extends Controller
 
     public function minhasListas()
     {
-        return view('lista');
+        return view('lista', Auth::user()->id);
     }
 
 }

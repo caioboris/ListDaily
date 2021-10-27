@@ -21,7 +21,7 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/minhasListas/{id}', [App\Http\Controllers\ProdutoController::class, 'show'])->name('lista');
+Route::get('/minhasListas/{id}', [App\Http\Controllers\ProdutoController::class, 'showEstoque'])->name('lista');
 
 Route::get('/admin', [App\Http\Controllers\AuthController::class, 'dashboard'])->name('admin');
 

@@ -20,7 +20,7 @@
                     @endif
                 <div class="row">
                     <div class="col fundo-a">
-                        <a href="{{route('lista')}}">Minhas Listas</a>
+                        <a href="{{route('lista', auth()->user()->id)}}">Minhas Listas</a>
                     </div>
                     <div class="col">
                         <a href="">Agendar Tarefas</a>
