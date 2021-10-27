@@ -56,5 +56,5 @@ jobs:
         with:
           app-name: 'List-Daily'
           slot-name: 'Production'
-          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_87990A92B74143B89C86C736C75D0BA2 }}
+          publish-profile: ${{ secrets.AZUREAPPSERVICE_PUBLISHPROFILE_0A9E6E963E1A4CB4B2F3DD5FA214BE33 }}
           package: .
