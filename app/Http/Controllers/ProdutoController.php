@@ -48,7 +48,7 @@ class ProdutoController extends Controller
 
             $produto = new Produto;
 
-            $produto->user_id = Auth::user()->id;
+            $produto->user_id = \Auth::user()->id;
             $produto->pdt_nome= $request->input('nome_produto');
             $produto->pdt_marca= $request->input('marca_produto');
             $produto->pdt_quantidade= $request->input('quantidade');

@@ -7,19 +7,19 @@
 <div class="container">
                 <div class="row">
                     <div class="col fundo-a">
-                        <a href="{{route('lista', auth()->user()->id)}}">Minhas Listas</a>
+                        <a href="{{route('lista', auth()->user()->id)}}">@lang('home.mylists')</a>
                     </div>
                     <div class="col">
-                        <a href="">Agendar Tarefas</a>
+                        <a href="">@lang('home.scheduletasks')</a>
                     </div>
                     <div class="col">
-                        <a href="{{route('estoque')}}">Meu Depósito</a>
+                        <a href="{{route('estoque')}}">@lang('home.mystock')</a>
                     </div>
+                    
                 </div>
 
             </div>
         </div>
 
-<script src="{{asset('site/jquery.js')}}"></script>
-<script src="{{asset('site/bootstrap.js')}}"></script>
+
 @endsection
