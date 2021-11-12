@@ -24,7 +24,9 @@ Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
 
-Route::get('/minhasListas/{id}', [App\Http\Controllers\ProdutoController::class, 'showEstoque'])->name('lista');
+Route::get('/minhasListas', [App\Http\Controllers\MinhasListasController::class, 'index'])->name('lista');
+
+Route::post('/minhasListas', [App\Http\Controllers\MinhasListasController::class, 'criar'])->name('lista.criar');
 
 Route::get('/admin', [App\Http\Controllers\AuthController::class, 'dashboard'])->name('admin');
 
