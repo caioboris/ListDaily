@@ -7,7 +7,7 @@
 <div class="container">
                 <div class="row">
                     <div class="col fundo-a">
-                        <a href="{{route('lista', auth()->user()->id)}}">@lang('home.mylists')</a>
+                        <a href="{{route('lista')}}">@lang('home.mylists')</a>
                     </div>
                     <div class="col">
                         <a href="">@lang('home.scheduletasks')</a>
