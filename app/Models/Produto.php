@@ -10,17 +10,15 @@ class Produto extends Model
     use HasFactory;
 
     public $fillable = [
-        'nome',
-        'quantidade',
-        'marca',
-        'peso',
-        'medida'
+        'produto_nome',
+        'produto_obs',
+        'produto_preco'
     ];
 
 
-    public function usuario()
+    public function produto()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsTo(Lista::class, 'id_lista', 'id');
     }
 
 }

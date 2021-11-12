@@ -11,6 +11,7 @@ class Lista extends Model
 
     public $fillable = [
         'nome',
+
         'desc',
         'publica',
     ];
@@ -20,4 +21,6 @@ class Lista extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
+        'lista_count'
+    ];
 }
