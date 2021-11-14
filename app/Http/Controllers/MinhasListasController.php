@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Lista;
 use Illuminate\Http\Request;
 
-class MinhasListasControlLer extends Controller
+class MinhasListasController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -31,24 +32,22 @@ class MinhasListasControlLer extends Controller
 
     public function criar(Request $request)
     {
-        $this->middleware('auth');
 
         $this->validate($request,[
             'nome_lista'=> 'required',
             'desc_lista' => 'required',
-            'radio_lista' => 'required',
         ]);
 
             $lista = new Lista;
 
-            $lista->user_id = \Auth::user()->id;
-            $lista->nome_lista= $request->input('nome_lista');
-            $lista->desc_lista= $request->input('desc_lista');
-            $lista->radio_lista= $request->input('radio_lista');
+            $lista->lista_nome= $request->input('nome_lista');
+            $lista->lista_desc= $request->input('desc_lista');
+            $lista->lista_status= $request->input('status_lista');
+            $lista->id_usuario = \Auth::user()->id;
 
             $lista->save();
 
-            return redirect('minhaslistas');
+            return redirect('minhasListas');
     }
 
     public function store(Request $request){

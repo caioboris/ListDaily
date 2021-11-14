@@ -9,11 +9,15 @@ class Lista extends Model
 {
     use HasFactory;
 
-    public $fillable = [
-        'nome',
+    protected $primaryKey = "id";
 
-        'desc',
-        'publica',
+    protected $table = 'listas';
+
+    public $fillable = [
+        'lista_nome',
+        'lista_desc',
+        'lista_status',
+        'id_usuario',
     ];
 
 
@@ -21,6 +25,4 @@ class Lista extends Model
     {
         return $this->belongsTo(User::class, 'user_id', 'id');
     }
-        'lista_count'
-    ];
 }

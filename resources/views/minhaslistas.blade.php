@@ -40,9 +40,12 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="marca_produto" class="col-md-4 col-form-label text-md-right">@lang('minhaslistas.radio')</label>
+            <label class="col-md-4 col-form-label text-md-right">@lang('minhaslistas.radio')</label>
             <div class="col-md-6">
-                <input class="form-check-input" type="checkbox" name="radio_lista" value="{{ old('radio_lista') }}" required autocomplete="radio_lista">
+                <select class="form-select form-select-lg mb-3" name="status_lista" value="{{ old('status_lista') }}" autocomplete="status_lista">
+                    <option value='false' selected>Não</option>
+                    <option value='true'>Sim</option>
+                </select>
             </div>
         </div>
     </div>
