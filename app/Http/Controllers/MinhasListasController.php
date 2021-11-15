@@ -27,36 +27,22 @@ class MinhasListasController extends Controller
 
     public function index()
     {
-        return view('minhaslistas');
+        $listas = $this->retrieve();
+        return view('minhaslistas', ['listas' => $listas]);
     }
 
-    public function criar(Request $request)
-    {
+    public function retrieve(){
+        $this->middleware('auth');
 
-        $this->validate($request,[
-            'nome_lista'=> 'required',
-            'desc_lista' => 'required',
-        ]);
+        $uid = \Auth::user()->id;
 
-            $lista = new Lista;
-
-            $lista->lista_nome= $request->input('nome_lista');
-            $lista->lista_desc= $request->input('desc_lista');
-            $lista->lista_status= $request->input('status_lista');
-            $lista->id_usuario = \Auth::user()->id;
-
-            $lista->save();
-
-            return redirect('minhasListas');
-    }
-
-    public function store(Request $request){
-        $produto = new Produto;
+        $listas = \DB::table('listas')->where('id_usuario', $uid)->get();
         
-        $produto = $request;
+        $listass = collect($listas)
+                        ->pluck('Lista','Lista')
+                        ->toArray();
 
-        $produto->save();
-
+        return $listas;
     }
 
 }
