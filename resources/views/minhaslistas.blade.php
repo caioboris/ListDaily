@@ -13,6 +13,26 @@
     @lang('minhaslistas.createlist')
 </button>
 </div>
+
+<div class="m-3 d-flex flex-lg-wrap justify-content-center">
+    @foreach ($listas as $key=>$data)
+    <div class="card m-2" style="width: 20rem;">
+        <div class="card-body">
+          <h5 class="card-title">{{$data->lista_nome}}</h5>
+          <p class="card-text">{{$data->lista_desc}}</p>
+          
+          <form method="POST" action="{{route('lista.deletar')}}">
+            <button><a>Editar Lista</a></button>
+            {{ csrf_field() }}
+            <input type="hidden" name="id_lista" value="{{$data->id}}">
+            <button type="submit"><a>Deletar lista</a></button>
+          </form>
+          
+        </div>
+      </div>
+    @endforeach
+</div>
+
 <div class="modal fade" id="exampleModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
       <div class="modal-content">
@@ -25,6 +45,8 @@
 <div class="card-body">
     <form method="POST" action="{{ route('lista.criar') }}">
         {{ csrf_field() }}
+
+        <input type="hidden" name="criarLista" value="1">
 
         <div class="form-group row">
             <label for="nome_produto" class="col-md-4 col-form-label text-md-right">@lang('minhaslistas.listname')</label>
@@ -40,9 +62,12 @@
             </div>
         </div>
         <div class="form-group row">
-            <label for="marca_produto" class="col-md-4 col-form-label text-md-right">@lang('minhaslistas.radio')</label>
+            <label class="col-md-4 col-form-label text-md-right">@lang('minhaslistas.radio')</label>
             <div class="col-md-6">
-                <input class="form-check-input" type="checkbox" name="radio_lista" value="{{ old('radio_lista') }}" required autocomplete="radio_lista">
+                <select class="form-select form-select-lg mb-3" name="status_lista" value="{{ old('status_lista') }}" autocomplete="status_lista">
+                    <option value='false' selected>Não</option>
+                    <option value='true'>Sim</option>
+                </select>
             </div>
         </div>
     </div>

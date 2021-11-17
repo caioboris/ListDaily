@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\User;
 use App\Models\Lista;
 use Illuminate\Http\Request;
 
-class MinhasListasControlLer extends Controller
+class MinhasListasController extends Controller
 {
     /**
      * Create a new controller instance.
@@ -26,38 +27,22 @@ class MinhasListasControlLer extends Controller
 
     public function index()
     {
-        return view('minhaslistas');
+        $listas = $this->retrieve();
+        return view('minhaslistas', ['listas' => $listas]);
     }
 
-    public function criar(Request $request)
-    {
+    public function retrieve(){
         $this->middleware('auth');
 
-        $this->validate($request,[
-            'nome_lista'=> 'required',
-            'desc_lista' => 'required',
-            'radio_lista' => 'required',
-        ]);
+        $uid = \Auth::user()->id;
 
-            $lista = new Lista;
-
-            $lista->user_id = \Auth::user()->id;
-            $lista->nome_lista= $request->input('nome_lista');
-            $lista->desc_lista= $request->input('desc_lista');
-            $lista->radio_lista= $request->input('radio_lista');
-
-            $lista->save();
-
-            return redirect('minhaslistas');
-    }
-
-    public function store(Request $request){
-        $produto = new Produto;
+        $listas = \DB::table('listas')->where('id_usuario', $uid)->get();
         
-        $produto = $request;
+        $listass = collect($listas)
+                        ->pluck('Lista','Lista')
+                        ->toArray();
 
-        $produto->save();
-
+        return $listas;
     }
 
 }
