@@ -27,21 +27,34 @@ class MinhasListasController extends Controller
 
     public function index()
     {
-        $listas = $this->retrieve();
+        $listas = $this->retrieveListas();
+
+        $listas = $listas->get();
+
         return view('minhaslistas', ['listas' => $listas]);
     }
 
-    public function retrieve(){
-        $this->middleware('auth');
+    /*public function verifyIfTableIsShared($ids, $uid){
+        $shared_users = [];
 
-        $uid = \Auth::user()->id;
+        $shared_users = explode(";", $ids);
 
-        $listas = \DB::table('listas')->where('id_usuario', $uid)->get();
-        
-        $listass = collect($listas)
-                        ->pluck('Lista','Lista')
-                        ->toArray();
+        foreach($shared_users as $user){
+            if($user == $uid){
+                return true;
+            }
+        }
+    }*/
 
+    /*public function insertTest(){
+        $user = User::find(4);	
+        $listasIds = [59,60,61];
+        $user->listas()->syncWithoutDetaching($listasIds);
+    }*/
+
+    public function retrieveListas(){
+        $listas = User::find(\Auth::user()->id);	
+        $listas = $listas->listas();
         return $listas;
     }
 

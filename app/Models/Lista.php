@@ -23,6 +23,6 @@ class Lista extends Model
 
     public function usuario()
     {
-        return $this->belongsTo(User::class, 'user_id', 'id');
+        return $this->belongsToMany(User::class, 'listas_usuario');
     }
 }

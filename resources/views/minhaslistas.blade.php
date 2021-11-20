@@ -14,7 +14,14 @@
 </button>
 </div>
 
+@if (session('status'))
+    <script>
+      alert(document.getElementById('status').value);
+    </script>
+@endif
+
 <div class="m-3 d-flex flex-lg-wrap justify-content-center">
+  <input type="hidden" id='status' value="{{ session('status') }}">
     @foreach ($listas as $key=>$data)
     <div class="card m-2" style="width: 20rem;">
         <div class="card-body">
@@ -25,6 +32,7 @@
             <button><a>Editar Lista</a></button>
             {{ csrf_field() }}
             <input type="hidden" name="id_lista" value="{{$data->id}}">
+            <input type="hidden" name="user_id" value="{{$data->id_usuario}}">
             <button type="submit"><a>Deletar lista</a></button>
           </form>
           
@@ -76,6 +84,8 @@
       <button type="submit" class="btn btn-primary">@lang('minhaslistas.addmodal')</button>
     </div>
   </div>
+</div>
+</div>
 </div>
 </div>
 
