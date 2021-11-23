@@ -31,5 +31,11 @@ class CriarListaController extends Controller
             $lista->save();
 
             return redirect('minhasListas')->with('status' , 'A lista foi criada');
+
+            /*public function insertTest(){
+                $user = User::find(4);	
+                $listasIds = [59];
+                $user->listas()->attach($listasIds);
+            }*/
     }
 }

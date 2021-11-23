@@ -43,6 +43,6 @@ class User extends Authenticatable
     ];
 
     public function listas(){
-        return $this->hasMany(Lista::class,'id_usuario','id');
+        return $this->belongsToMany(Lista::class,'listas_usuario');
     }
 }

@@ -17,8 +17,12 @@ class DeletarListaController extends Controller
 
         $this->middleware('auth');
 
-        \DB::table('listas')->where('id', $request->input('id_lista'))->delete();
-
-        return redirect('minhasListas')->with('status' , 'A lista foi deletada');
+        if(\Auth::user()->id == $request->input('user_id')){
+            \DB::table('listas')->where('id', $request->input('id_lista'))->delete();
+            return redirect('minhasListas')->with('status' , 'A lista foi deletada');
+        }else{
+            return redirect('minhasListas')->with('status' , 'Você não é o criador dessa lista!');
+        }
+        
     }
 }
