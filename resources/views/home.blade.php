@@ -12,10 +12,7 @@
                     <div class="col">
                         <a href="">@lang('home.scheduletasks')</a>
                     </div>
-                    <div class="col">
-                        <a href="{{route('estoque')}}">@lang('home.mystock')</a>
-                    </div>
-                    
+
                 </div>
 
             </div>

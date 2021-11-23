@@ -13,7 +13,7 @@ class Produto extends Migration
      */
     public function up()
     {
-        Schema::create('TB_PRODUTO', function (Blueprint $table) {
+        Schema::create('produto', function (Blueprint $table) {
             $table->id();
             $table->string('produto_nome');
             $table->string('produto_obs')->nullable();
@@ -22,10 +22,10 @@ class Produto extends Migration
             $table->timestamps();
         });
 
-        Schema::table('TB_PRODUTO', function (Blueprint $table) {
+        Schema::table('produto', function (Blueprint $table) {
 
 
-            $table->foreign('id_lista')->references('id')->on('TB_LISTA')->onDelete('cascade');
+            $table->foreign('id_lista')->references('id')->on('listas')->onDelete('cascade');
         });
     }
 
