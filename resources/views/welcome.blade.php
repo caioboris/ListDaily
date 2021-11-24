@@ -25,11 +25,11 @@
     </head>
     <body class="antialiased">
         <div class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
-            
-                
-                
+
+
+
                 <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: white;">
+                    <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #141414; ">
                         {{ Config::get('languages')[App::getLocale()] }}
                     </a>
                     <div class="dropdown-menu">
@@ -41,7 +41,7 @@
                             @endif
                         @endforeach
                     </div>
-                    @if (Route::has('login'))    
+                    @if (Route::has('login'))
                         @auth
                             <a href="{{ url('/home') }}" class="text-sm text-gray-700 dark:text-gray-500 underline">@lang('welcome.home')</a>
                         @else
@@ -53,15 +53,15 @@
                         @endauth
                     @endif
                 </div>
-            
+
 
             <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
                 <div class="flex justify-center pt-8 sm:pt-0">
                         <img src="./img/logo.jpeg" width="300em" />
                 </div>
                 <div class="text-center">
-                    <h1 style="color: white;">@lang('welcome.welcome_message')</h1>
-                    <h3 style="color: white;">@lang('welcome.welcome_submessage')</h3>
+                    <h3 style="color: #141414;">@lang('welcome.welcome_submessage')</h3>
+                    <h1 style="color: #141414;">@lang('welcome.welcome_message')</h1>
                 </div>
                 <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                     <div class="grid grid-cols-1 md:grid-cols-2">

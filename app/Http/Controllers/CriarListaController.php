@@ -12,7 +12,7 @@ class CriarListaController extends Controller
     {
         $this->middleware('auth');
     }
-    
+
     public function criar(Request $request)
     {
 
@@ -30,12 +30,12 @@ class CriarListaController extends Controller
 
             $lista->save();
 
+            $user = User::find(\Auth::user()->id);
+            $listasId= \DB::table('listas')->where('id_usuario', \Auth::user()->id)->latest('created_at')->first();
+            $user->listas()->syncWithoutDetaching($listasId->id);
+
             return redirect('minhasListas')->with('status' , 'A lista foi criada');
 
-            /*public function insertTest(){
-                $user = User::find(4);	
-                $listasIds = [59];
-                $user->listas()->attach($listasIds);
-            }*/
+
     }
 }

@@ -20,7 +20,13 @@ class CreateListasTable extends Migration
             $table->boolean('lista_status')->nullable()->default(false);
             $table->UnsignedBigInteger('id_usuario');
             $table->timestamps();
-            
+
+        });
+
+        Schema::table('listas', function (Blueprint $table) {
+
+
+            $table->foreign('id_usuario')->references('id')->on('user')->onDelete('cascade');
         });
     }
 

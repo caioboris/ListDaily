@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Produto;
+use App\Models\Lista;
 use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
@@ -13,10 +14,6 @@ class ProdutoController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
-        //
-    }
 
     /**
      * Show the form for creating a new resource.
@@ -28,36 +25,57 @@ class ProdutoController extends Controller
         //
     }
 
-    /**
-     * Store a newly created resource in storage.
-     *
-     * @param  \Illuminate\Http\Request  $request
-     * @return \Illuminate\Http\Response
-     */
+    public function index()
+    {
+        //$produtos = $this->retrieveProdutos();
+
+        $produtos = $this->retrieveProdutos();
+
+        $produtos = $produtos->get();
+
+        $lista = session()->get('data');
+
+        $lista = (object) ['id' => $lista->id, 'lista_nome' => $lista->lista_nome, 'lista_desc' => $lista->lista_desc, 'lista_status' => $lista->lista_status];
+
+        return view('lista', ['data' => $lista, 'produtos' => $produtos]);
+    }
+
+    public function retrieveProdutos(){
+        $lista = session()->get('data');
+
+        $lista = (object) ['id' => $lista->id, 'lista_nome' => $lista->lista_nome, 'lista_desc' => $lista->lista_desc, 'lista_status' => $lista->lista_status];
+
+        $produtos = Lista::find($lista->id);
+
+        $produtos = $produtos->produto();
+
+        return $produtos;
+    }
+
     public function adicionar(Request $request)
     {
         $this->middleware('auth');
 
         $this->validate($request,[
-            'nome_produto'=> 'required',
-            'marca_produto' => 'required',
-            'quantidade' => 'required',
-            'peso' => 'required',
-            'medida'=> 'required'
+            'produto_nome' => 'required',
+            'produto_obs',
+            'produto_preco'
         ]);
 
             $produto = new Produto;
 
-            $produto->user_id = \Auth::user()->id;
-            $produto->pdt_nome= $request->input('nome_produto');
-            $produto->pdt_marca= $request->input('marca_produto');
-            $produto->pdt_quantidade= $request->input('quantidade');
-            $produto->pdt_peso= $request->input('peso');
-            $produto->pdt_medida= $request->input('medida');
+            $produto->id_lista = $request->input('id_lista');
+            $produto->produto_nome= $request->input('produto_nome');
+            $produto->produto_obs= $request->input('produto_obs');
+            $produto->produto_preco= $request->input('produto_preco');
 
             $produto->save();
 
-            return redirect('home');
+            $lista = Lista::find($request->input('id_lista'));
+            $produtoId= \DB::table('produto')->where('produto_nome', $request->input('produto_nome'))->latest('created_at')->first();
+            $lista->produto()->syncWithoutDetaching($produtoId->id);
+
+            return redirect('minhasListas')->with('status' , 'produto adicionado a sua lista');
     }
 
     /**
@@ -66,22 +84,6 @@ class ProdutoController extends Controller
      * @param  \App\Models\Produto  $produto
      * @return \Illuminate\Http\Response
      */
-    public function showEstoque($id)
-    {
-        $this->middleware('auth');
-
-        $user = User::where('id',$id)->first();
-
-        $produtos = $user->produtos()->get();
-
-        if($produtos){
-            echo "<h1>Produtos na sua Dispensa</h1>";
-
-            foreach($produtos as $produto){
-                echo "<p>{$produto->pdt_nome}, {$produto->pdt_quantidade}, {$produto->pdt_marca}, {$produto->pdt_peso}, {$produto->pdt_medida}</p>";
-            }
-        }
-    }
 
 
 

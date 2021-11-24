@@ -17,8 +17,6 @@ Route::get('/', function () {
     return view('welcome');
 })->name('welcome');
 
-Route::get('/estoque', [App\Http\Controllers\MedidaController::class,'index'])->name('estoque');
-Route::post('/estoque', [App\Http\Controllers\ProdutoController::class,'adicionar'])->name('estoque.adicionar');
 
 Auth::routes();
 
@@ -27,6 +25,11 @@ Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name
 Route::get('/minhasListas', [App\Http\Controllers\MinhasListasController::class, 'index'])->name('lista');
 
 Route::post('/criarLista', [App\Http\Controllers\CriarListaController::class, 'criar'])->name('lista.criar');
+Route::post('/editarLista', [App\Http\Controllers\ProdutoController::class, 'adicionar'])->name('lista.editar');
+
+Route::post('/storeLista', [App\Http\Controllers\StoreListaController::class, 'store'])->name('lista.store');
+
+Route::get('/lista', [App\Http\Controllers\ProdutoController::class, 'index'])->name('lista.page');
 
 Route::post('/deletarLista', [App\Http\Controllers\DeletarListaController::class, 'delete'])->name('lista.deletar');
 

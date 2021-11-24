@@ -9,10 +9,6 @@ class Lista extends Model
 {
     use HasFactory;
 
-    protected $primaryKey = "id";
-
-    protected $table = 'listas';
-
     public $fillable = [
         'lista_nome',
         'lista_desc',
@@ -24,5 +20,10 @@ class Lista extends Model
     public function usuario()
     {
         return $this->belongsToMany(User::class, 'listas_usuario');
+    }
+
+    public function produto()
+    {
+        return $this->belongsToMany(Produto::class, 'listas_produto');
     }
 }

@@ -9,16 +9,17 @@ class Produto extends Model
 {
     use HasFactory;
 
+    protected $table = "produto";
+
     public $fillable = [
         'produto_nome',
         'produto_obs',
         'produto_preco'
     ];
 
-
-    public function produto()
+    public function listas()
     {
-        return $this->belongsTo(Lista::class, 'id_lista', 'id');
+        return $this->belongsToMany(Lista::class, 'listas_produto');
     }
 
 }
