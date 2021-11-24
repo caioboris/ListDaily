@@ -19,9 +19,9 @@ class CreateListasProduto extends Migration
 
             $table->BigInteger('lista_id')->unsigned();
 
-            $table->foreign('produto_id')->references('id')->on('produto')->onDelete('cascade');
+            $table->foreign('produto_id')->references('id')->on('produto');
 
-            $table->foreign('lista_id')->references('id')->on('listas')->onDelete('cascade');
+            $table->foreign('lista_id')->references('id')->on('listas');
         });
     }
 
