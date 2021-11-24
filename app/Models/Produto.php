@@ -17,10 +17,9 @@ class Produto extends Model
         'produto_preco'
     ];
 
-
-    public function produto()
+    public function listas()
     {
-        return $this->belongsTo(Lista::class, 'id_lista', 'id');
+        return $this->belongsToMany(Lista::class, 'listas_produto');
     }
 
 }

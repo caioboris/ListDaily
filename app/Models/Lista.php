@@ -21,4 +21,9 @@ class Lista extends Model
     {
         return $this->belongsToMany(User::class, 'listas_usuario');
     }
+
+    public function produto()
+    {
+        return $this->belongsToMany(Produto::class, 'listas_produto');
+    }
 }

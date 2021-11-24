@@ -31,13 +31,9 @@
           <form method="POST" action="{{route('lista.deletar')}}">
             {{ csrf_field() }}
             <input type="hidden" name="id_lista" value="{{$data->id}}">
-<<<<<<< HEAD
             <input type="hidden" name="user_id" value="{{$data->id_usuario}}">
-            <button type="submit"><a>Deletar lista</a></button>
-=======
             <div class="row">
             <button type="submit" class="btn btn-outline-danger btn-sm"><a>Deletar lista</a></button>
->>>>>>> listaAdd
           </form>
         <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#updateListaModal">
             Editar Lista
@@ -140,10 +136,7 @@
   </div>
 </div>
 </div>
-<<<<<<< HEAD
-</div>
-</div>
-=======
+
     </div>
 </div>
 
@@ -214,14 +207,14 @@
                       </tr>
                     </thead>
                     <tbody>
-                      {{--@foreach($produtos as $key=>$data)--}}
+                      @foreach($produtos as $key=>$data)
                       <tr>
                         <th scope="row"></th>
-                        <td>Arroz</td>
-                        <td>A marca camil está mais em conta</td>
-                        <td>R$25.00</td>
+                        <td>{{$produtos->produto_nome}}}</td>
+                        <td>{{$produtos->produto_obs}}</td>
+                        <td>R${{$produtos->produto_preco}}</td>
                       </tr>
-                      {{--@endforeach--}}
+                      @endforeach
                     </tbody>
                   </table>
 
@@ -234,7 +227,6 @@
     </div>
 </div>
 
->>>>>>> listaAdd
 
 <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.1/js/bootstrap.min.js" integrity="sha512-ewfXo9Gq53e1q1+WDTjaHAGZ8UvCWq0eXONhwDuIoaH8xz2r96uoAYaQCm1oQhnBfRXrvJztNXFsTloJfgbL5Q==" crossorigin="anonymous" referrerpolicy="no-referrer"></script>
 

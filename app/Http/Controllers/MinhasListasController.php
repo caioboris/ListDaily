@@ -47,15 +47,21 @@ class MinhasListasController extends Controller
     }*/
 
     /*public function insertTest(){
-        $user = User::find(4);	
+        $user = User::find(4);
         $listasIds = [59,60,61];
         $user->listas()->syncWithoutDetaching($listasIds);
     }*/
 
     public function retrieveListas(){
-        $listas = User::find(\Auth::user()->id);	
+        $listas = User::find(\Auth::user()->id);
         $listas = $listas->listas();
         return $listas;
+    }
+
+    public function retrieveProdutos(){
+    $produtos = Lista::find(produto()->id_lista);
+    $produtos = $produtos->listas();
+    return $produtos;
     }
 
 }
