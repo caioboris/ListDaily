@@ -27,7 +27,6 @@ class MinhasListasController extends Controller
 
     public function index()
     {
-
         $listas = $this->retrieveListas();
 
         $listas = $listas->get();
