@@ -20,9 +20,7 @@ Route::get('/', function () {
 
 Auth::routes();
 
-Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
-
-Route::get('/minhasListas', [App\Http\Controllers\MinhasListasController::class, 'index'])->name('lista');
+Route::get('/home', [App\Http\Controllers\MinhasListasController::class, 'index'])->name('lista');
 
 Route::post('/criarLista', [App\Http\Controllers\CriarListaController::class, 'criar'])->name('lista.criar');
 Route::post('/editarLista', [App\Http\Controllers\ProdutoController::class, 'adicionar'])->name('lista.editar');
