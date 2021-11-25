@@ -31,6 +31,7 @@ Route::post('/storeLista', [App\Http\Controllers\StoreListaController::class, 's
 
 Route::get('/lista', [App\Http\Controllers\ProdutoController::class, 'index'])->name('lista.page');
 
+
 Route::post('/deletarLista', [App\Http\Controllers\DeletarListaController::class, 'delete'])->name('lista.deletar');
 
 Route::get('/admin', [App\Http\Controllers\AuthController::class, 'dashboard'])->name('admin');
