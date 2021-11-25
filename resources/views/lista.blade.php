@@ -2,20 +2,33 @@
 
 @section('content')
 
-<body class="antialiased">
+    <body class="antialiased">
+        <div class="text-center">
+            <h1>{{ $data->lista_nome }}</h1>
+            <p>{{ $data->lista_desc }}</p>
+        </div>
 
-<h1>Minhas Listas</h1>
+        <table class="table table-striped" style="width: 90%; margin: auto">
+            <thead>
+                <tr>
+                    <th scope="col"></th>
+                    <th scope="col">Nome do Produto</th>
+                    <th scope="col">Observação</th>
+                    <th scope="col">Último Preço</th>
+                </tr>
+            </thead>
+            @foreach ($produtos as $key => $data)
+                <tr>
+                    <td scope="row"></td>
+                    <td>{{ $data->produto_nome }}</td>
+                    <td>{{ $data->produto_obs }}</td>
+                    <td>R${{ $data->produto_preco }}</td>
+                </tr>
+            @endforeach
+            <tbody>
 
-
-Aqui estão as suas listas
-
-
-@foreach ($user->produtos as $produto)
-<h3>{{ $produto->pdt_nome }}</h3>
-<p>{{ $produto->pdt_marca }}</p>
-@endforeach
-
-<a>Criar Lista</a>
-</body>
+            </tbody>
+        </table>
+    </body>
 
 @endsection

@@ -27,6 +27,11 @@ Route::get('/minhasListas', [App\Http\Controllers\MinhasListasController::class,
 Route::post('/criarLista', [App\Http\Controllers\CriarListaController::class, 'criar'])->name('lista.criar');
 Route::post('/editarLista', [App\Http\Controllers\ProdutoController::class, 'adicionar'])->name('lista.editar');
 
+Route::post('/storeLista', [App\Http\Controllers\StoreListaController::class, 'store'])->name('lista.store');
+
+Route::get('/lista', [App\Http\Controllers\ProdutoController::class, 'index'])->name('lista.page');
+
+
 Route::post('/deletarLista', [App\Http\Controllers\DeletarListaController::class, 'delete'])->name('lista.deletar');
 
 Route::get('/admin', [App\Http\Controllers\AuthController::class, 'dashboard'])->name('admin');
