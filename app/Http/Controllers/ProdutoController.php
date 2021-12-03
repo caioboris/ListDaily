@@ -27,7 +27,6 @@ class ProdutoController extends Controller
 
     public function index()
     {
-
         //$produtos = $this->retrieveProdutos();
 
         $produtos = $this->retrieveProdutos();
@@ -51,22 +50,6 @@ class ProdutoController extends Controller
         $produtos = $produtos->produto();
 
         return $produtos;
-        $produto = $this->retrieve();
-        return view('minhaslistas', ['produto' => $produtos]);
-    }
-
-    public function retrieve(){
-        $this->middleware('auth');
-
-        $uid = \Auth::user()->id;
-
-        $listas = \DB::table('listas')->where('id_usuario', $uid)->get();
-
-        $listass = collect($listas)
-                        ->pluck('Lista','Lista')
-                        ->toArray();
-
-        return $listas;
     }
 
     public function adicionar(Request $request)

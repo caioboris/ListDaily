@@ -59,10 +59,4 @@ class MinhasListasController extends Controller
         return $listas;
     }
 
-    public function retrieveProdutos(){
-    $produtos = Lista::find(produto()->id_lista);
-    $produtos = $produtos->listas();
-    return $produtos;
-    }
-
 }
