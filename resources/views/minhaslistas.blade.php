@@ -9,7 +9,8 @@
     </div>
 
     <div class="text-center">
-        <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal" data-bs-target="#exampleModal">
+        <button type="button" class="btn btn-outline-danger btn-sm" data-bs-toggle="modal"
+            data-bs-target="#createListaModal">
             @lang('minhaslistas.createlist')
         </button>
     </div>

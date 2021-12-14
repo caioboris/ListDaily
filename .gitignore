@@ -13,3 +13,6 @@ npm-debug.log
 yarn-error.log
 /.idea
 /.vscode
+app/Http/Controllers/EstoqueController.php
+app/Models/Medidas.php
+resources/views/estoque.blade.php

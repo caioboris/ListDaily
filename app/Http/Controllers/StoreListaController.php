@@ -23,6 +23,7 @@ class StoreListaController extends Controller
             $lista->lista_desc = $request->input('lista_desc');
             $lista->lista_status = $request->input('lista_status');
 
+            session()->pull('data');
             session()->put('data', $lista);
 
             return redirect()->route('lista.page');

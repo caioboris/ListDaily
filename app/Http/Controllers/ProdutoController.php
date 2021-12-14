@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Produto;
+use App\Models\Produtos;
 use App\Models\Lista;
 use Illuminate\Http\Request;
 
@@ -64,18 +65,27 @@ class ProdutoController extends Controller
 
             $produto = new Produto;
 
-            $produto->id_lista = $request->input('id_lista');
+            $produto->id_lista= $request->input('id_lista');
             $produto->produto_nome= $request->input('produto_nome');
             $produto->produto_obs= $request->input('produto_obs');
             $produto->produto_preco= $request->input('produto_preco');
 
             $produto->save();
 
+            $produtos = new Produtos;
+
+            $produtos->id_lista = $produto->id_lista;
+            $produtos->produto_nome = $produto->produto_nome;
+            $produtos->produto_obs = $produto->produto_obs;
+            $produtos->produto_preco = $produto->produto_preco;
+
+            $produtos->save();
+
             $lista = Lista::find($request->input('id_lista'));
             $produtoId= \DB::table('produto')->where('produto_nome', $request->input('produto_nome'))->latest('created_at')->first();
             $lista->produto()->syncWithoutDetaching($produtoId->id);
 
-            return redirect('minhasListas')->with('status' , 'produto adicionado a sua lista');
+            return redirect('lista')->with('status' , 'produto adicionado a sua lista');
     }
 
     /**

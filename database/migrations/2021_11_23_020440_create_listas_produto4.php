@@ -4,7 +4,7 @@ use Illuminate\Database\Migrations\Migration;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Support\Facades\Schema;
 
-class CreateListasProduto extends Migration
+class CreateListasProduto4 extends Migration
 {
     /**
      * Run the migrations.
@@ -21,7 +21,7 @@ class CreateListasProduto extends Migration
 
             $table->foreign('produto_id')->references('id')->on('produto');
 
-            $table->foreign('lista_id')->references('id_lista')->on('produto');
+            $table->foreign('lista_id')->references('id')->on('listas')->onDelete('cascade')->onUpdate('cascade');
         });
     }
 
