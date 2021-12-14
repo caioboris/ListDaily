@@ -12,6 +12,7 @@ class Produtos extends Model
     protected $table = "produtos";
 
     public $fillable = [
+        'id',
         'produto_nome',
         'produto_obs',
         'produto_preco'

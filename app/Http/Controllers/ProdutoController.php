@@ -10,6 +10,11 @@ use Illuminate\Http\Request;
 
 class ProdutoController extends Controller
 {
+    public function __construct()
+    {
+        $this->middleware('auth');
+    }
+
     /**
      * Display a listing of the resource.
      *
@@ -72,20 +77,23 @@ class ProdutoController extends Controller
 
             $produto->save();
 
-            $produtos = new Produtos;
+            $produtoId= \DB::table('produto')->where('produto_nome', $request->input('produto_nome'))->latest('created_at')->first();
 
+            $produtos = new Produtos;
+            
+            $produtos->id = $produtoId->id;
             $produtos->id_lista = $produto->id_lista;
             $produtos->produto_nome = $produto->produto_nome;
             $produtos->produto_obs = $produto->produto_obs;
             $produtos->produto_preco = $produto->produto_preco;
 
+            \DB::unprepared('SET IDENTITY_INSERT produtos ON');
             $produtos->save();
 
             $lista = Lista::find($request->input('id_lista'));
-            $produtoId= \DB::table('produto')->where('produto_nome', $request->input('produto_nome'))->latest('created_at')->first();
             $lista->produto()->syncWithoutDetaching($produtoId->id);
 
-            return redirect('lista')->with('status' , 'produto adicionado a sua lista');
+            return redirect('lista')->with('status' , 'Produto adicionado a sua lista');
     }
 
     /**
@@ -115,9 +123,14 @@ class ProdutoController extends Controller
      * @param  \App\Models\Produto  $produto
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, Produto $produto)
+    public function update(Request $request)
     {
-        //
+        dd($request->input('produto_obs'));
+            $update = ['lista_nome' => $request->input('nome_lista'), 'lista_desc' => $request->input('desc_lista'), 'lista_status' => $request->input('status_lista')];
+
+            \DB::table('listas')->where('id', $request->input('id_lista'))->update($update);
+
+            return redirect('minhasListas')->with('status' , 'A lista foi editada');
     }
 
     /**
@@ -126,8 +139,13 @@ class ProdutoController extends Controller
      * @param  \App\Models\Produto  $produto
      * @return \Illuminate\Http\Response
      */
-    public function destroy(Produto $produto)
-    {
-        //
+    public function destroy(Request $request){
+
+        $this->middleware('auth');
+
+        \DB::table('produto')->where('id', $request->input('id_produto'))->delete();
+
+        return redirect('lista')->with('status' , 'O produto foi removido');
+        
     }
 }

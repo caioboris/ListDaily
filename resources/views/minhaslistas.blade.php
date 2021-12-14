@@ -21,6 +21,12 @@
         </script>
     @endif
 
+    <script>
+        function setListaID(id) {
+            document.getElementById('id_lista_editar').value = id;
+        }
+    </script>
+
     <div class="m-3 d-flex flex-lg-wrap justify-content-center">
         <input type="hidden" id='status' value="{{ session('status') }}">
         @foreach ($listas as $key => $data)
@@ -42,7 +48,8 @@
 
                         <form>
                             <button type="button" class="btn btn-outline-danger btn-sm" style="width:100%;"
-                                data-bs-toggle="modal" data-bs-target="#updateListaModal">
+                                data-bs-toggle="modal" data-bs-target="#editarListaModal"
+                                onclick="setListaID({{ $data->id }})">
                                 Editar Lista
                             </button>
                         </form>
@@ -93,8 +100,10 @@
                                 <label for="desc_lista"
                                     class="col-md-4 col-form-label text-md-right">@lang('minhaslistas.listdesc')</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="desc_lista"
-                                        value="{{ old('desc_lista') }}" required autocomplete="desc_lista">
+                                    <textarea class="form-control rounded-0" name="desc_lista"
+                                        value="{{ old('desc_lista') }}" rows="5" required autocomplete="desc_lista">
+
+                                                                                            </textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -119,71 +128,20 @@
         </div>
     </div>
 
-    {{-- <div class="modal fade" id="updateListaModal" tabindex="-1" aria-labelledby="createListaModalLabel"
+    <div class="modal fade" id="editarListaModal" tabindex="-1" aria-labelledby="editarListaModalLabel"
         aria-hidden="true">
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="createListaModalLabel">@lang('minhaslistas.newlist')</h5>
+                    <h5 class="modal-title" id="editarListaModalLabel">Editar Lista</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
 
                     <div class="card-body">
-                        <form method="POST" action="{{ route('lista.editar') }}">
+                        <form method="POST" action="{{ route('lista.update') }}">
                             {{ csrf_field() }}
-                            <input type="hidden" id="currentLista" name="id_lista" value="">
-                            <div class="form-group row">
-                                <label for="produto_nome" class="col-md-4 col-form-label text-md-right">Nome do
-                                    Produto</label>
-
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" name="produto_nome"
-                                        value="{{ old('produto_nome') }}" required autocomplete="produto_nome" autofocus>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label for="produto_obs" class="col-md-4 col-form-label text-md-right">Observação</label>
-                                <div class="col-md-6">
-                                    <input type="text" class="form-control" name="produto_obs"
-                                        value="{{ old('produto_obs') }}" required autocomplete="produto_obs">
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-4 col-form-label text-md-right">Último Preço</label>
-                                <div class="col-md-4">
-                                    <input type="decimal" class="form-control" name="produto_preco"
-                                        value="{{ old('produto_preco') }}" required autocomplete="produto_preco">
-                                </div>
-                            </div>
-                            <div class="modal-footer">
-                                <button type="button" class="btn btn-secondary"
-                                    data-bs-dismiss="modal">@lang('minhaslistas.closemodal')</button>
-                                <button type="submit" class="btn btn-primary">@lang('minhaslistas.addmodal')</button>
-                            </div>
-                        </form>
-                    </div>
-                </div>
-            </div>
-
-        </div>
-    </div> --}}
-
-    <div class="modal fade" id="createListaModal" tabindex="-1" aria-labelledby="updateListaModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="createListaModalLabel">@lang('minhaslistas.newlist')</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-
-                    <div class="card-body">
-                        <form method="POST" action="{{ route('lista.criar') }}">
-                            {{ csrf_field() }}
-
-                            <input type="hidden" name="criarLista" value="1">
+                            <input type="hidden" id="id_lista_editar" name="id_lista">
 
                             <div class="form-group row">
                                 <label for="nome_lista"
@@ -198,8 +156,10 @@
                                 <label for="desc_lista"
                                     class="col-md-4 col-form-label text-md-right">@lang('minhaslistas.listdesc')</label>
                                 <div class="col-md-6">
-                                    <input type="text" class="form-control" name="desc_lista"
-                                        value="{{ old('desc_lista') }}" required autocomplete="desc_lista">
+                                    <textarea class="form-control rounded-0" name="desc_lista"
+                                        value="{{ old('desc_lista') }}" rows="5" required autocomplete="desc_lista">
+
+                                                                                            </textarea>
                                 </div>
                             </div>
                             <div class="form-group row">
@@ -215,7 +175,7 @@
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"
                                     data-bs-dismiss="modal">@lang('minhaslistas.closemodal')</button>
-                                <button type="submit" class="btn btn-primary">@lang('minhaslistas.addmodal')</button>
+                                <button type="submit" class="btn btn-primary">Editar</button>
                             </div>
                         </form>
                     </div>
@@ -223,40 +183,6 @@
             </div>
         </div>
     </div>
-
-    <div class="modal fade" id="selectListaModal" tabindex="-1" aria-labelledby="selectListaModalLabel"
-        aria-hidden="true">
-        <div class="modal-dialog">
-            <div class="modal-content">
-                <div class="modal-header">
-                    <h5 class="modal-title" id="createListaModalLabel">@lang('minhaslistas.newlist')</h5>
-                    <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-                </div>
-                <div class="modal-body">
-                    <div class="card-body">
-                        <table class="table table-striped">
-                            <thead>
-                                <tr>
-                                    <th scope="col"></th>
-                                    <th scope="col">Nome do Produto</th>
-                                    <th scope="col">Observação</th>
-                                    <th scope="col">Último Preço</th>
-                                </tr>
-                            </thead>
-                            <tbody>
-                            </tbody>
-                        </table>
-
-                        <div class="modal-footer">
-                            <button type="button" class="btn btn-secondary"
-                                data-bs-dismiss="modal">@lang('minhaslistas.closemodal')</button>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
-
 
     <script src="https://cdnjs.cloudflare.com/ajax/libs/twitter-bootstrap/5.1.1/js/bootstrap.min.js"
         integrity="sha512-ewfXo9Gq53e1q1+WDTjaHAGZ8UvCWq0eXONhwDuIoaH8xz2r96uoAYaQCm1oQhnBfRXrvJztNXFsTloJfgbL5Q=="
