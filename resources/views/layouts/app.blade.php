@@ -55,9 +55,10 @@
                 </div>
 
                 <!-- Right Side Of Navbar -->
-                <div>
-                    <!-- Authentication Links -->
-                    @guest
+                <!-- Authentication Links -->
+
+                @guest
+                    <div style="display: flex">
                         @if (Route::has('login'))
                             <a style="color: black" class="nav-link"
                                 href="{{ route('login') }}">@lang('welcome.login')</a>
@@ -67,7 +68,9 @@
                             <a style="color: black" class="nav-link"
                                 href="{{ route('register') }}">@lang('welcome.register')</a>
                         @endif
-                    @else
+                    </div>
+                @else
+                    <div>
                         <a style="color: black;" id="navbarDropdown" class="nav-link dropdown-toggle" href="#"
                             data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
                             {{ Auth::user()->name }}
@@ -77,8 +80,9 @@
                                 {{ __('Logout') }}
                             </a>
                         </div>
-                    @endguest
-                </div>
+                    </div>
+                @endguest
+
             </div>
         </div>
 
