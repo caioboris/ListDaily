@@ -69,8 +69,7 @@
 
         .bg-gray-100 {
             --bg-opacity: 1;
-            background-color: #f7fafc;
-            background-color: rgba(247, 250, 252, var(--bg-opacity))
+            background-color: #f8f9fa;
         }
 
         .border-gray-200 {
@@ -416,22 +415,24 @@
     </style>
 </head>
 
-<body class="antialiased">
+<body class="antialiased" >
     <div
-        class="relative flex items-top justify-center min-h-screen bg-gray-100 dark:bg-gray-900 sm:items-center py-4 sm:pt-0">
+        class="relative flex items-top min-h-screen sm:items-center py-4 sm:pt-0">
 
-        <div class="hidden fixed top-0 right-0 px-6 py-4 sm:block">
-            <a href="#" class="dropdown-toggle" data-toggle="dropdown" style="color: #141414; ">
-                {{ Config::get('languages')[App::getLocale()] }}
-            </a>
-            <div class="dropdown-menu">
-                @foreach (Config::get('languages') as $lang => $language)
-                    @if ($lang != App::getLocale())
-                        <li>
-                            <a href="{{ route('lang.switch', $lang) }}">{{ $language }}</a>
-                        </li>
-                    @endif
-                @endforeach
+        <div class="hidden fixed top-0 left-0 px-6 py-4 sm:block">
+            <div style="justify-content-center">
+                <a href="#" class="dropdown-toggle" data-toggle="dropdown">
+                    {{ Config::get('languages')[App::getLocale()] }}
+                </a>
+                <div class="dropdown-menu">
+                    @foreach (Config::get('languages') as $lang => $language)
+                        @if ($lang != App::getLocale())
+                            <li>
+                                <a href="{{ route('lang.switch', $lang) }}">{{ $language }}</a>
+                            </li>
+                        @endif
+                    @endforeach
+                </div>
             </div>
             @if (Route::has('login'))
                 @auth
@@ -452,7 +453,7 @@
 
         <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
             <div class="flex justify-center pt-8 sm:pt-0">
-                <img src="./img/logo.jpeg" width="300em" />
+                <img src="./img/logo2.png" width="300em" />
             </div>
             <div class="text-center">
                 <h3 style="color: #141414;">@lang('welcome.welcome_submessage')</h3>
@@ -460,7 +461,7 @@
             </div>
             <div class="mt-8 bg-white dark:bg-gray-800 overflow-hidden shadow sm:rounded-lg">
                 <div class="grid grid-cols-1 md:grid-cols-2">
-                    <div class="p-6">
+                    <div class="p-6" style="background-color: #db5662">
 
                         <div class="ml-12">
                             <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
@@ -470,7 +471,8 @@
                         </div>
                     </div>
 
-                    <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l">
+                    <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-t-0 md:border-l"
+                    style="background-color:#db5662">
                         <div class="ml-12">
                             <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                                 <h2 style="color: #141414">@lang('welcome.stockcontrol')</h2>
@@ -479,7 +481,8 @@
                         </div>
                     </div>
 
-                    <div class="p-6 border-t border-gray-200 dark:border-gray-700">
+                    <div class="p-6 border-t border-gray-200 dark:border-gray-700"
+                    style="background-color: #db5662">
                         <div class="ml-12">
                             <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                                 <h2 style="color: #141414">@lang('welcome.activitymanager')</h2>
@@ -488,7 +491,8 @@
                         </div>
                     </div>
 
-                    <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-l">
+                    <div class="p-6 border-t border-gray-200 dark:border-gray-700 md:border-l"
+                    style="background-color:#db5662">
                         <div class="ml-12">
                             <div class="mt-2 text-gray-600 dark:text-gray-400 text-sm">
                                 <h2 style="color: #141414">@lang('welcome.organizelife')</h2>

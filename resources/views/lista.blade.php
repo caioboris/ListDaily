@@ -9,6 +9,13 @@
     </script>
 
     <body class="antialiased">
+    <link rel="stylesheet" href="{{asset('site/bootstrap.css')}}">
+        <div class="text-center">
+            <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal">
+            <a href="{{route('lista')}}">@lang('home.mylists')</a>
+            </button>
+        </div>
+
         <div class="text-center">
             <h1>{{ $data->lista_nome }}</h1>
             <p>{{ $data->lista_desc }}</p>
