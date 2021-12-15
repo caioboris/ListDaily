@@ -18,7 +18,6 @@ class CriarListaController extends Controller
 
         $this->validate($request,[
             'nome_lista'=> 'required',
-            'desc_lista' => 'required',
         ]);
 
             $lista = new Lista;
