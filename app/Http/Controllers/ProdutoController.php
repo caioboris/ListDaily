@@ -92,7 +92,7 @@ class ProdutoController extends Controller
 
             if($produto->codigo_de_barras){
                 $produto::updateOrCreate(
-                    ['codigo_de_barras' => $codigoVar],
+                    ['codigo_de_barras' => $produto->codigo_de_barras],
                     ['produto_nome' => $produto->produto_nome,'id_lista' => $produto->id_lista , 'produto_obs' => $produto->produto_obs, 'produto_preco' => $produto->produto_preco]
                 );
             }else{
@@ -114,8 +114,8 @@ class ProdutoController extends Controller
             \DB::unprepared('SET IDENTITY_INSERT produtos ON');
             if($produtos->codigo_de_barras){
                 $produtos::updateOrCreate(
-                    ['codigo_de_barras' => $codigoVar],
-                    ['produto_nome' => $produtos->produto_nome,'id_lista' => $produtos->id_lista , 'produto_obs' => $produtos->produto_obs, 'produto_preco' => $produtos->produto_preco]
+                    ['codigo_de_barras' => $produtos->codigo_de_barras],
+                    ['id' => $produtos->id,'produto_nome' => $produtos->produto_nome,'id_lista' => $produtos->id_lista , 'produto_obs' => $produtos->produto_obs, 'produto_preco' => $produtos->produto_preco]
                 );
             }else{
                 $produtos->save();
