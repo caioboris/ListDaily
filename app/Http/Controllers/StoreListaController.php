@@ -22,6 +22,7 @@ class StoreListaController extends Controller
             $lista->lista_nome = $request->input('lista_nome');
             $lista->lista_desc = $request->input('lista_desc');
             $lista->lista_status = $request->input('lista_status');
+            $lista->shared_users = $request->input('shared_users');
 
             session()->pull('data');
             session()->put('data', $lista);

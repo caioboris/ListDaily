@@ -25,7 +25,7 @@ class EditarListaController extends Controller
 
             \DB::table('listas')->where('id', $request->input('id_lista'))->update($update);
 
-            return redirect('minhasListas')->with('status' , 'A lista foi editada');
+            return redirect('home')->with('status' , 'A lista foi editada');
 
 
     }

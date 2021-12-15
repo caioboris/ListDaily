@@ -8,6 +8,8 @@ use App\Models\Produtos;
 use App\Models\Lista;
 use Illuminate\Http\Request;
 
+use Illuminate\Support\Collection;
+
 class ProdutoController extends Controller
 {
     public function __construct()
@@ -35,6 +37,8 @@ class ProdutoController extends Controller
     {
         //$produtos = $this->retrieveProdutos();
 
+        $usuarios = $this->retrieveCompartilhados();
+
         $produtos = $this->retrieveProdutos();
 
         $produtos = $produtos->get();
@@ -43,7 +47,7 @@ class ProdutoController extends Controller
 
         $lista = (object) ['id' => $lista->id, 'lista_nome' => $lista->lista_nome, 'lista_desc' => $lista->lista_desc, 'lista_status' => $lista->lista_status];
 
-        return view('lista', ['data' => $lista, 'produtos' => $produtos]);
+        return view('lista', ['data' => $lista, 'produtos' => $produtos, 'compartilhados' => $usuarios]);
     }
 
     public function retrieveProdutos(){
@@ -56,6 +60,16 @@ class ProdutoController extends Controller
         $produtos = $produtos->produto();
 
         return $produtos;
+    }
+
+    public function retrieveCompartilhados(){
+        $lista = session()->get('data');
+
+        $lista = (object) ['id' => $lista->id, 'lista_nome' => $lista->lista_nome, 'lista_desc' => $lista->lista_desc, 'lista_status' => $lista->lista_status];
+
+        $usuarios = Lista::find($lista->id);
+        $usuarios = $usuarios->usuario();
+        return $usuarios->get();
     }
 
     public function adicionar(Request $request)
@@ -76,9 +90,12 @@ class ProdutoController extends Controller
             $produto->produto_obs= $request->input('produto_obs');
             $produto->produto_preco= $request->input('produto_preco');
 
-            $produto->save();
+            $produto::updateOrCreate(
+                ['codigo_de_barras' => $produto->codigo_de_barras],
+                ['produto_nome' => $produto->produto_nome,'id_lista' => $produto->id_lista , 'produto_obs' => $produto->produto_obs, 'produto_preco' => $produto->produto_preco]
+            );
 
-            $produtoId= \DB::table('produto')->where('produto_nome', $request->input('produto_nome'))->latest('created_at')->first();
+            $produtoId= \DB::table('produto')->where('produto_nome', $request->input('produto_nome'))->latest('updated_at')->first();
 
             $produtos = new Produtos;
             
@@ -90,7 +107,10 @@ class ProdutoController extends Controller
             $produtos->produto_preco = $produto->produto_preco;
 
             \DB::unprepared('SET IDENTITY_INSERT produtos ON');
-            $produtos->save();
+            $produtos::updateOrCreate(
+                ['codigo_de_barras' => $produtos->codigo_de_barras],
+                ['id' => $produtos->id, 'id_lista' => $produtos->id_lista, 'produto_nome' => $produtos->produto_nome, 'produto_obs' => $produtos->produto_obs, 'produto_preco' => $produtos->produto_preco]
+            );
 
             $lista = Lista::find($request->input('id_lista'));
             $lista->produto()->syncWithoutDetaching($produtoId->id);
@@ -132,7 +152,7 @@ class ProdutoController extends Controller
 
             \DB::table('listas')->where('id', $request->input('id_lista'))->update($update);
 
-            return redirect('minhasListas')->with('status' , 'A lista foi editada');
+            return redirect('lista')->with('status' , 'A lista foi editada');
     }
 
     /**

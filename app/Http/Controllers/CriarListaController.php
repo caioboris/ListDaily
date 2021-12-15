@@ -34,7 +34,7 @@ class CriarListaController extends Controller
             $listasId= \DB::table('listas')->where('id_usuario', \Auth::user()->id)->latest('created_at')->first();
             $user->listas()->syncWithoutDetaching($listasId->id);
 
-            return redirect('minhasListas')->with('status' , 'A lista foi criada');
+            return redirect('home')->with('status' , 'A lista foi criada');
 
 
     }

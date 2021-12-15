@@ -25,6 +25,8 @@ Route::get('/home', [App\Http\Controllers\MinhasListasController::class, 'index'
 Route::post('/criarLista', [App\Http\Controllers\CriarListaController::class, 'criar'])->name('lista.criar');
 Route::post('/editarLista', [App\Http\Controllers\ProdutoController::class, 'adicionar'])->name('lista.editar');
 Route::post('/updateLista', [App\Http\Controllers\EditarListaController::class, 'editar'])->name('lista.update');
+Route::post('/compartilharLista', [App\Http\Controllers\CompartilharListaController::class, 'compartilhar'])->name('lista.compartilhar');
+Route::post('/removerUsuarioLista', [App\Http\Controllers\RemoverUsuarioController::class, 'removerUsuario'])->name('lista.removerUsuario');
 
 Route::post('/lista', [App\Http\Controllers\ProdutoController::class, 'destroy'])->name('produto.remover');
 

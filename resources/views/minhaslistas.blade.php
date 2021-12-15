@@ -60,6 +60,7 @@
                             <input type="hidden" name="lista_nome" value="{{ $data->lista_nome }}">
                             <input type="hidden" name="lista_desc" value="{{ $data->lista_desc }}">
                             <input type="hidden" name="lista_status" value="{{ $data->lista_status }}">
+                            <input type="hidden" name="shared_users" value="{{ $data->shared_users }}">
 
                             <button type="submit" class="btn btn-outline-danger btn-sm" style="width:100%;">
                                 Ver Lista
@@ -103,17 +104,7 @@
                                     <textarea class="form-control rounded-0" name="desc_lista"
                                         value="{{ old('desc_lista') }}" rows="5" required autocomplete="desc_lista">
 
-                                                                                            </textarea>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-4 col-form-label text-md-right">@lang('minhaslistas.radio')</label>
-                                <div class="col-md-4">
-                                    <select class="form-select form-select-lg mb-3" name="status_lista"
-                                        value="{{ old('status_lista') }}" autocomplete="status_lista">
-                                        <option value='false' selected>Não</option>
-                                        <option value='true'>Sim</option>
-                                    </select>
+                                                                                                        </textarea>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -159,17 +150,7 @@
                                     <textarea class="form-control rounded-0" name="desc_lista"
                                         value="{{ old('desc_lista') }}" rows="5" required autocomplete="desc_lista">
 
-                                                                                            </textarea>
-                                </div>
-                            </div>
-                            <div class="form-group row">
-                                <label class="col-md-4 col-form-label text-md-right">@lang('minhaslistas.radio')</label>
-                                <div class="col-md-4">
-                                    <select class="form-select form-select-lg mb-3" name="status_lista"
-                                        value="{{ old('status_lista') }}" autocomplete="status_lista">
-                                        <option value='false' selected>Não</option>
-                                        <option value='true'>Sim</option>
-                                    </select>
+                                                                                                        </textarea>
                                 </div>
                             </div>
                             <div class="modal-footer">

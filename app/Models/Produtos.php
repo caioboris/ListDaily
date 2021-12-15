@@ -13,9 +13,11 @@ class Produtos extends Model
 
     public $fillable = [
         'id',
+        'codigo_de_barras',
         'produto_nome',
         'produto_obs',
-        'produto_preco'
+        'produto_preco',
+        'id_lista'
     ];
 
 }

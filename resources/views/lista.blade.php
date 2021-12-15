@@ -57,10 +57,10 @@
     </script>
 
     <body class="antialiased">
-    <link rel="stylesheet" href="{{asset('site/bootstrap.css')}}">
+        <link rel="stylesheet" href="{{ asset('site/bootstrap.css') }}">
         <div class="text-center">
             <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal">
-            <a href="{{route('lista')}}">@lang('home.mylists')</a>
+                <a style="text-decoration: none; color: inherit;" href="{{ route('home') }}">Voltar para Home</a>
             </button>
         </div>
 
@@ -70,9 +70,17 @@
         </div>
 
         <div style="display: flex; justify-content: center; align-items: center; margin: 1rem 0">
-            <button type="button" id="addprodutos" class="btn btn-outline-danger btn-sm" style="width:10rem; margin: auto;"
+            <button type="button" id="addprodutos" class="btn btn-outline-danger btn-sm" style="width:10rem; margin: 1rem;"
                 data-toggle="modal" data-target="#updateListaModal">
                 Adicionar Produtos
+            </button>
+            <button type="button" class="btn btn-outline-danger btn-sm" style="width:10rem; margin: 1rem;"
+                data-toggle="modal" data-target="#compartilharListaModal">
+                Compartilhar lista
+            </button>
+            <button type="button" class="btn btn-outline-danger btn-sm" style="width:10rem; margin: 1rem;"
+                data-toggle="modal" data-target="#removerUsuarioListaModal">
+                Remover usuário
             </button>
         </div>
 
@@ -230,6 +238,83 @@
                                 <div id="scanbarcode">
                                     <video src="" style="width: 100%; height: auto;"></video>
                                     <canvas class="drawingBuffer" style="display: none;"></canvas>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="compartilharListaModal" tabindex="-1" aria-labelledby="compartilharListaModalLabel"
+            aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="compartilharListaModal">Compartilhar lista</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="card-body">
+                            <form method="POST" action="{{ route('lista.compartilhar') }}">
+                                {{ csrf_field() }}
+                                <input type="hidden" id="currentLista" name="id_lista" value={{ $data->id }}>
+                                <div class="form-group row">
+                                    <label for="usuario_email" class="col-md-4 col-form-label text-md-right">Email do
+                                        usuário</label>
+
+                                    <div class="col-md-6">
+                                        <input type="text" class="form-control" name="usuario_email"
+                                            value="{{ old('usuario_email') }}" autocomplete="usuario_email" required
+                                            autofocus>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">@lang('minhaslistas.closemodal')</button>
+                                    <button type="submit" class="btn btn-primary">Compartilhar</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+        <div class="modal fade" id="removerUsuarioListaModal" tabindex="-1"
+            aria-labelledby="removerUsuarioListaModalLabel" aria-hidden="true">
+            <div class="modal-dialog">
+                <div class="modal-content">
+                    <div class="modal-header">
+                        <h5 class="modal-title" id="removerUsuarioListaModal">Remover usuario da lista</h5>
+                        <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
+                    </div>
+                    <div class="modal-body">
+
+                        <div class="card-body">
+                            <form method="POST" action="{{ route('lista.removerUsuario') }}">
+                                {{ csrf_field() }}
+                                <input type="hidden" id="currentLista" name="id_lista" value={{ $data->id }}>
+                                <div class="form-group row">
+                                    <label for="usuario_id" class="col-md-4 col-form-label text-md-right">Usuário</label>
+
+                                    <div class="col-md-6">
+                                        <select class="form-select form-select-sm" name="usuario_id"
+                                            aria-label=".form-select-sm example">
+                                            <option selected>Selecione um usuário</option>
+                                            @foreach ($compartilhados as $key => $usuario)
+                                                @if ($usuario->id != \Auth::user()->id)
+                                                    <option value={{ $usuario->id }}>{{ $usuario->name }}</option>
+                                                @endif
+                                            @endforeach
+                                        </select>
+                                    </div>
+                                </div>
+                                <div class="modal-footer">
+                                    <button type="button" class="btn btn-secondary"
+                                        data-dismiss="modal">@lang('minhaslistas.closemodal')</button>
+                                    <button type="submit" class="btn btn-primary">Remover</button>
                                 </div>
                             </form>
                         </div>

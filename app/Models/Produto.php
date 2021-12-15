@@ -12,9 +12,11 @@ class Produto extends Model
     protected $table = "produto";
 
     public $fillable = [
+        'codigo_de_barras',
         'produto_nome',
         'produto_obs',
-        'produto_preco'
+        'produto_preco',
+        'id_lista'
     ];
 
     public function listas()

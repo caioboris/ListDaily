@@ -40,9 +40,9 @@ class DeletarListaController extends Controller
 
             \DB::table('listas')->where('id', $request->input('id_lista'))->delete();
 
-            return redirect('minhasListas')->with('status' , 'A lista foi deletada');
+            return redirect('home')->with('status' , 'A lista foi deletada');
         }else{
-            return redirect('minhasListas')->with('status' , 'Você não é o criador dessa lista!');
+            return redirect('home')->with('status' , 'Você não é o criador dessa lista!');
         }
         
     }
