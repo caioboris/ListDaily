@@ -90,10 +90,15 @@ class ProdutoController extends Controller
             $produto->produto_obs= $request->input('produto_obs');
             $produto->produto_preco= $request->input('produto_preco');
 
-            $produto::updateOrCreate(
-                ['codigo_de_barras' => $produto->codigo_de_barras],
-                ['produto_nome' => $produto->produto_nome,'id_lista' => $produto->id_lista , 'produto_obs' => $produto->produto_obs, 'produto_preco' => $produto->produto_preco]
-            );
+            if($produto->codigo_de_barras){
+                $produto::updateOrCreate(
+                    ['codigo_de_barras' => $codigoVar],
+                    ['produto_nome' => $produto->produto_nome,'id_lista' => $produto->id_lista , 'produto_obs' => $produto->produto_obs, 'produto_preco' => $produto->produto_preco]
+                );
+            }else{
+                $produto->save();
+            }
+            
 
             $produtoId= \DB::table('produto')->where('produto_nome', $request->input('produto_nome'))->latest('updated_at')->first();
 
@@ -107,10 +112,14 @@ class ProdutoController extends Controller
             $produtos->produto_preco = $produto->produto_preco;
 
             \DB::unprepared('SET IDENTITY_INSERT produtos ON');
-            $produtos::updateOrCreate(
-                ['codigo_de_barras' => $produtos->codigo_de_barras],
-                ['id' => $produtos->id, 'id_lista' => $produtos->id_lista, 'produto_nome' => $produtos->produto_nome, 'produto_obs' => $produtos->produto_obs, 'produto_preco' => $produtos->produto_preco]
-            );
+            if($produtos->codigo_de_barras){
+                $produtos::updateOrCreate(
+                    ['codigo_de_barras' => $codigoVar],
+                    ['produto_nome' => $produtos->produto_nome,'id_lista' => $produtos->id_lista , 'produto_obs' => $produtos->produto_obs, 'produto_preco' => $produtos->produto_preco]
+                );
+            }else{
+                $produtos->save();
+            }
 
             $lista = Lista::find($request->input('id_lista'));
             $lista->produto()->syncWithoutDetaching($produtoId->id);

@@ -1,6 +1,7 @@
 @extends('layouts.app')
 
 @section('content')
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <script>
         function setProdutoID(id) {
@@ -57,12 +58,6 @@
     </script>
 
     <body class="antialiased">
-        <link rel="stylesheet" href="{{ asset('site/bootstrap.css') }}">
-        <div class="text-center">
-            <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal">
-                <a style="text-decoration: none; color: inherit;" href="{{ route('home') }}">Voltar para Home</a>
-            </button>
-        </div>
 
         <div class="text-center">
             <h1>{{ $data->lista_nome }}</h1>
@@ -72,57 +67,72 @@
         <div style="display: flex; justify-content: center; align-items: center; margin: 1rem 0">
             <button type="button" id="addprodutos" class="btn btn-outline-danger btn-sm" style="width:10rem; margin: 1rem;"
                 data-toggle="modal" data-target="#updateListaModal">
-                Adicionar Produtos
+                @lang('lista.addproducts')
             </button>
             <button type="button" class="btn btn-outline-danger btn-sm" style="width:10rem; margin: 1rem;"
                 data-toggle="modal" data-target="#compartilharListaModal">
-                Compartilhar lista
+                @lang('lista.sharelist')
             </button>
             <button type="button" class="btn btn-outline-danger btn-sm" style="width:10rem; margin: 1rem;"
                 data-toggle="modal" data-target="#removerUsuarioListaModal">
-                Remover usuário
+                @lang('lista.removeuser')
             </button>
         </div>
 
-        <table class="table table-striped" style="width: 90%; margin: auto">
-            <thead>
-                <tr>
-                    <th scope="col"></th>
-                    <th scope="col">Nome do Produto</th>
-                    <th scope="col">Observação</th>
-                    <th scope="col">Último Preço</th>
-                    <th scope="col">Ações</th>
-                </tr>
-            </thead>
-            @foreach ($produtos as $key => $value)
-                <tr>
-                    <td scope="row"></td>
-                    <td>{{ $value->produto_nome }}</td>
-                    <td>{{ $value->produto_obs }}</td>
-                    <td>R${{ $value->produto_preco }}</td>
-                    <td style="display: flex; height: 100%;">
-                        <form method="POST" action="{{ route('produto.remover') }}">
-                            {{ csrf_field() }}
-                            <input type="hidden" name="id_produto" value={{ $value->id }}>
-                            <button type="submit" class="btn btn-outline-danger btn-sm" style="width:2rem;">X</button>
-                        </form>
-                        <button type="submit" class="btn btn-outline-danger btn-sm" style="width:2rem; margin-left: 1rem"
-                            onclick="setProdutoID({{ $value->id }})" data-toggle="modal"
-                            data-target="#updateProdutoModal">E</button>
-                    </td>
-                </tr>
-            @endforeach
-            <tbody>
+        <div class="table-responsive shadow"
+            style="max-height:16rem;width: 90%;margin: auto; border: 2px solid #383838;
+                                                                                                                                            border-radius: 5px;">
+            <table class="table table-striped" style="width: 100%;">
+                <thead>
+                    <tr>
+                        <th scope="col"></th>
+                        <th scope="col">@lang('lista.nameproduct')</th>
+                        <th scope="col">@lang('lista.nameobs')</th>
+                        <th scope="col">@lang('lista.price')</th>
+                        <th scope="col">@lang('lista.actions')</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    @foreach ($produtos as $key => $value)
+                        <tr>
+                            <td scope="row"></td>
+                            <td>{{ $value->produto_nome }}</td>
+                            <td>{{ $value->produto_obs }}</td>
+                            @if ($value->produto_preco)
+                                <td>R${{ $value->produto_preco }}</td>
+                            @else
+                                <td scope="row"></td>
+                            @endif
 
-            </tbody>
-        </table>
+                            <td style="display: flex; height: 100%;">
+                                <form method="POST" action="{{ route('produto.remover') }}">
+                                    {{ csrf_field() }}
+                                    <input type="hidden" name="id_produto" value={{ $value->id }}>
+                                    <button type="submit" class="btn btn-outline-danger btn-sm"
+                                        style="width:2rem;">⤫</button>
+                                </form>
+                                <button type="submit" class="btn btn-outline-danger btn-sm"
+                                    style="width:2rem; margin-left: 1rem" onclick="setProdutoID({{ $value->id }})"
+                                    data-toggle="modal" data-target="#updateProdutoModal">✎</button>
+                            </td>
+                        </tr>
+                    @endforeach
+                </tbody>
+            </table>
+        </div>
+
+        <div class="text-center mt-4">
+            <button type="button" class="btn btn-outline-danger btn-sm" data-toggle="modal">
+                <a style="text-decoration: none; color: inherit;" href="{{ route('home') }}">@lang('lista.home')</a>
+            </button>
+        </div>
 
         <div class="modal fade" id="updateListaModal" tabindex="-1" aria-labelledby="updateListaModalLabel"
             aria-hidden="true" aria-modal="true">
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="updateListaModal">Adicionar Produto</h5>
+                        <h5 class="modal-title" id="updateListaModal">@lang('lista.addproducts')</h5>
                         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -133,8 +143,8 @@
                                 <input type="hidden" id="currentLista" name="id_lista" value={{ $data->id }}>
                                 <input type="hidden" id="currentCodigo" name="codigo_de_barras">
                                 <div class="form-group row">
-                                    <label for="produto_nome" class="col-md-4 col-form-label text-md-right">Nome do
-                                        Produto</label>
+                                    <label for="produto_nome"
+                                        class="col-md-4 col-form-label text-md-right">@lang('lista.nameproducts')</label>
 
                                     <div class="col-md-6">
                                         <input type="text" id="nomeproduto" class="form-control" name="produto_nome"
@@ -144,17 +154,18 @@
                                 </div>
                                 <div class="form-group row">
                                     <label for="produto_obs"
-                                        class="col-md-4 col-form-label text-md-right">Observação</label>
+                                        class="col-md-4 col-form-label text-md-right">@lang('lista.nameobs')</label>
                                     <div class="col-md-6">
                                         <input type="text" id="obs" class="form-control" name="produto_obs"
                                             value="{{ old('produto_obs') }}" autocomplete="produto_obs">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-4 col-form-label text-md-right">Último Preço</label>
+                                    <label class="col-md-4 col-form-label text-md-right">@lang('lista.price')</label>
                                     <div class="col-md-4">
-                                        <input type="decimal" id="preco" class="form-control" name="produto_preco"
-                                            value="{{ old('produto_preco') }}" autocomplete="produto_preco">
+                                        <input type="number" min="0.00" step="0.01" id="preco" class="form-control"
+                                            name="produto_preco" value="{{ old('produto_preco') }}"
+                                            autocomplete="produto_preco">
                                     </div>
                                 </div>
                                 <div class="modal-footer">
@@ -162,7 +173,8 @@
                                         data-dismiss="modal">@lang('minhaslistas.closemodal')</button>
                                     <button type="submit" class="btn btn-primary">@lang('minhaslistas.addmodal')</button>
                                     <button id="scanbtn" type="button" class="btn btn-primary" data-toggle="modal"
-                                        data-target="#escanearProdutoModal" onclick="initQuagga()">Escanear</button>
+                                        data-target="#escanearProdutoModal"
+                                        onclick="initQuagga()">@lang('lista.scan')</button>
                                 </div>
                             </form>
                         </div>
@@ -176,7 +188,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="updateProdutoModal">Editar Produto</h5>
+                        <h5 class="modal-title" id="updateProdutoModal">@lang('lista.edit')</h5>
                         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -186,8 +198,8 @@
                                 {{ csrf_field() }}
                                 <input type="hidden" id="currentProduto" name="id_produto">
                                 <div class="form-group row">
-                                    <label for="produto_nome" class="col-md-4 col-form-label text-md-right">Nome do
-                                        Produto</label>
+                                    <label for="produto_nome"
+                                        class="col-md-4 col-form-label text-md-right">@lang('lista.nameproducts')</label>
 
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" name="produto_nome"
@@ -196,14 +208,14 @@
                                 </div>
                                 <div class="form-group row">
                                     <label for="produto_obs"
-                                        class="col-md-4 col-form-label text-md-right">Observação</label>
+                                        class="col-md-4 col-form-label text-md-right">@lang('lista.nameobs')</label>
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" name="produto_obs"
                                             value="{{ old('produto_obs') }}" autocomplete="produto_obs">
                                     </div>
                                 </div>
                                 <div class="form-group row">
-                                    <label class="col-md-4 col-form-label text-md-right">Último Preço</label>
+                                    <label class="col-md-4 col-form-label text-md-right">@lang('lista.price')</label>
                                     <div class="col-md-4">
                                         <input type="decimal" class="form-control" name="produto_preco"
                                             value="{{ old('produto_preco') }}" autocomplete="produto_preco">
@@ -212,7 +224,7 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-dismiss="modal">@lang('minhaslistas.closemodal')</button>
-                                    <button type="submit" class="btn btn-primary">Editar</button>
+                                    <button type="submit" class="btn btn-primary">@lang('lista.editbtn')</button>
                                 </div>
                             </form>
                         </div>
@@ -226,7 +238,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="escanearProdutoModal">@lang('minhaslistas.newlist')</h5>
+                        <h5 class="modal-title" id="escanearProdutoModal">@lang('lista.scanproduct')</h5>
                         <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -251,7 +263,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="compartilharListaModal">Compartilhar lista</h5>
+                        <h5 class="modal-title" id="compartilharListaModal">@lang('lista.sharelist')</h5>
                         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -261,8 +273,8 @@
                                 {{ csrf_field() }}
                                 <input type="hidden" id="currentLista" name="id_lista" value={{ $data->id }}>
                                 <div class="form-group row">
-                                    <label for="usuario_email" class="col-md-4 col-form-label text-md-right">Email do
-                                        usuário</label>
+                                    <label for="usuario_email"
+                                        class="col-md-4 col-form-label text-md-right">@lang('lista.email')</label>
 
                                     <div class="col-md-6">
                                         <input type="text" class="form-control" name="usuario_email"
@@ -273,7 +285,7 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-dismiss="modal">@lang('minhaslistas.closemodal')</button>
-                                    <button type="submit" class="btn btn-primary">Compartilhar</button>
+                                    <button type="submit" class="btn btn-primary">@lang('lista.share')</button>
                                 </div>
                             </form>
                         </div>
@@ -287,7 +299,7 @@
             <div class="modal-dialog">
                 <div class="modal-content">
                     <div class="modal-header">
-                        <h5 class="modal-title" id="removerUsuarioListaModal">Remover usuario da lista</h5>
+                        <h5 class="modal-title" id="removerUsuarioListaModal">@lang('lista.removeuser')</h5>
                         <button type="button" class="btn-close" data-dismiss="modal" aria-label="Close"></button>
                     </div>
                     <div class="modal-body">
@@ -297,12 +309,13 @@
                                 {{ csrf_field() }}
                                 <input type="hidden" id="currentLista" name="id_lista" value={{ $data->id }}>
                                 <div class="form-group row">
-                                    <label for="usuario_id" class="col-md-4 col-form-label text-md-right">Usuário</label>
+                                    <label for="usuario_id"
+                                        class="col-md-4 col-form-label text-md-right">@lang('lista.user')</label>
 
                                     <div class="col-md-6">
                                         <select class="form-select form-select-sm" name="usuario_id"
                                             aria-label=".form-select-sm example">
-                                            <option selected>Selecione um usuário</option>
+                                            <option selected>@lang('lista.select')</option>
                                             @foreach ($compartilhados as $key => $usuario)
                                                 @if ($usuario->id != \Auth::user()->id)
                                                     <option value={{ $usuario->id }}>{{ $usuario->name }}</option>
@@ -314,7 +327,7 @@
                                 <div class="modal-footer">
                                     <button type="button" class="btn btn-secondary"
                                         data-dismiss="modal">@lang('minhaslistas.closemodal')</button>
-                                    <button type="submit" class="btn btn-primary">Remover</button>
+                                    <button type="submit" class="btn btn-primary">@lang('lista.removebtn')</button>
                                 </div>
                             </form>
                         </div>
@@ -322,8 +335,6 @@
                 </div>
             </div>
         </div>
-
-        <script src="{{ asset('js/app.js') }}"></script>
 
         <?php
         if (session()->has('codigo')) {

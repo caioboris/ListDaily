@@ -10,7 +10,10 @@ return [
     'listdesc' => 'Descrição da Lista',
     'radio' => 'Compartilhar Lista',
     'closemodal' => 'Fechar',
-    'addmodal' => 'Adicionar' 
-
+    'addmodal' => 'Adicionar',
+    'edit' => 'Editar lista',
+    'see' => 'Ver lista',
+    'editbtn' => 'Editar',
+    'delete' => 'Deletar lista',
 
 ];

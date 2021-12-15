@@ -1,18 +1,19 @@
 <?php
 
 return [
-
+    'Português' => 'Portuguese',
+    'English' => 'English',
     'home' => 'Home',
     'login' => 'Sign in',
     'register' => 'Sign up',
     'welcome_message' => 'Welcome to List Daily',
     'welcome_submessage' => 'The best shopping list and organization platform in Brazil',
     'shoppinglist' => 'Shopping List',
-    'shoppinglist_desc' => 'Build your shopping list dynamically and easy! <br>With List Daily, your list is built automatically according to your stock.',
-    'stockcontrol' => 'Stock Control',
-    'stockcontrol_desc' => 'Ease the local stock control by using our application, which advices you when something is running out and helps you build a shopping list.',
-    'activitymanager' => 'Task Manager',
-    'activitymanager_desc' => 'Register and manage your activities through our application, where you can register how much you are going to consume and our application discounts it from stock automatically!',
+    'shoppinglist_desc' => 'Build your shopping list dynamically and easilly! <br>With List Daily, it is a lot easier to organize your shopping lists!',
+    'stockcontrol' => 'Scan a Barcode',
+    'stockcontrol_desc' => 'Ease the add products process by scanning a barcode!',
+    'activitymanager' => 'List Sharing',
+    'activitymanager_desc' => 'In our platform, it is possible to share your lists with other users!',
     'organizelife' => 'Organize your life',
     'organizelife_desc' => 'Optimize your time and organize your home at the same time!',
 

@@ -1,10 +1,11 @@
 @extends('layouts.app')
 
 @section('content')
+    <script src="{{ asset('js/app.js') }}"></script>
 
     <div class="text-center">
         <h2>@lang('minhaslistas.listh3')</h2>
-        <h5>@lang('minhaslistas.listh5')</h5>
+        <h4>@lang('minhaslistas.listh5')</h4>
 
     </div>
 
@@ -30,7 +31,7 @@
     <div class="m-3 d-flex flex-lg-wrap justify-content-center">
         <input type="hidden" id='status' value="{{ session('status') }}">
         @foreach ($listas as $key => $data)
-            <div class="card m-2" style="width: 20rem;">
+            <div class="card m-2" style="width: 30rem;">
                 <div class="card-body">
                     <div class="row">
                         <h5 class="card-title">{{ $data->lista_nome }}</h5>
@@ -42,15 +43,15 @@
                             <input type="hidden" name="id_lista" value="{{ $data->id }}">
                             <input type="hidden" name="user_id" value="{{ $data->id_usuario }}">
 
-                            <button type="submit" class="btn btn-outline-danger btn-sm" style="width:100%;"><a>Deletar
-                                    lista</a></button>
+                            <button type="submit" class="btn btn-outline-danger btn-sm"
+                                style="width:100%;"><a>@lang('minhaslistas.delete')</a></button>
                         </form>
 
                         <form>
                             <button type="button" class="btn btn-outline-danger btn-sm" style="width:100%;"
                                 data-bs-toggle="modal" data-bs-target="#editarListaModal"
                                 onclick="setListaID({{ $data->id }})">
-                                Editar Lista
+                                @lang('minhaslistas.edit')
                             </button>
                         </form>
 
@@ -63,7 +64,7 @@
                             <input type="hidden" name="shared_users" value="{{ $data->shared_users }}">
 
                             <button type="submit" class="btn btn-outline-danger btn-sm" style="width:100%;">
-                                Ver Lista
+                                @lang('minhaslistas.see')
                             </button>
                         </form>
                     </div>
@@ -104,7 +105,7 @@
                                     <textarea class="form-control rounded-0" name="desc_lista"
                                         value="{{ old('desc_lista') }}" rows="5" required autocomplete="desc_lista">
 
-                                                                                                        </textarea>
+                                                                                                                                        </textarea>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -124,7 +125,7 @@
         <div class="modal-dialog">
             <div class="modal-content">
                 <div class="modal-header">
-                    <h5 class="modal-title" id="editarListaModalLabel">Editar Lista</h5>
+                    <h5 class="modal-title" id="editarListaModalLabel">@lang('minhaslistas.edit')</h5>
                     <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
                 </div>
                 <div class="modal-body">
@@ -150,13 +151,13 @@
                                     <textarea class="form-control rounded-0" name="desc_lista"
                                         value="{{ old('desc_lista') }}" rows="5" required autocomplete="desc_lista">
 
-                                                                                                        </textarea>
+                                                                                                                                        </textarea>
                                 </div>
                             </div>
                             <div class="modal-footer">
                                 <button type="button" class="btn btn-secondary"
                                     data-bs-dismiss="modal">@lang('minhaslistas.closemodal')</button>
-                                <button type="submit" class="btn btn-primary">Editar</button>
+                                <button type="submit" class="btn btn-primary">@lang('minhaslistas.editbtn')</button>
                             </div>
                         </form>
                     </div>
