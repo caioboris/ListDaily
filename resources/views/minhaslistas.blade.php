@@ -28,7 +28,7 @@
         }
     </script>
 
-    <div class="m-3 d-flex flex-lg-wrap justify-content-center">
+    <div class="m-3 d-xl-flex flex-lg-wrap justify-content-center align-items-center">
         <input type="hidden" id='status' value="{{ session('status') }}">
         @foreach ($listas as $key => $data)
             <div class="card m-2" style="width: 30rem;">
@@ -105,7 +105,7 @@
                                     <textarea class="form-control rounded-0" name="desc_lista"
                                         value="{{ old('desc_lista') }}" rows="5" required autocomplete="desc_lista">
 
-                                                                                                                                        </textarea>
+                                                                                                                                                                                                                                </textarea>
                                 </div>
                             </div>
                             <div class="modal-footer">
@@ -151,7 +151,7 @@
                                     <textarea class="form-control rounded-0" name="desc_lista"
                                         value="{{ old('desc_lista') }}" rows="5" required autocomplete="desc_lista">
 
-                                                                                                                                        </textarea>
+                                                                                                                                                                                                                                </textarea>
                                 </div>
                             </div>
                             <div class="modal-footer">

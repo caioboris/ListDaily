@@ -23,6 +23,7 @@
     <!-- Styles -->
     <style>
         /*! normalize.css v8.0.1 | MIT License | github.com/necolas/normalize.css */
+
         html {
             line-height: 1.15;
             -webkit-text-size-adjust: 100%
@@ -32,10 +33,11 @@
             position: sticky;
             top: 0;
             z-index: 1;
+            max-width: 200rem;
             box-sizing: border-box;
-            height: 3rem;
-            padding: 1rem;
-            padding-left: 0.5rem;
+            height: 48px;
+            padding: 16px;
+            padding-left: 8px;
             display: flex;
             align-items: center;
             justify-content: space-between;
@@ -365,6 +367,16 @@
             grid-template-columns: repeat(1, minmax(0, 1fr))
         }
 
+        @media(max-width:496px) {
+            * {
+                font-size: 10px;
+            }
+
+            #overflow {
+                overflow-x: hidden;
+            }
+        }
+
         @media (min-width:640px) {
             .sm\:rounded-lg {
                 border-radius: .5rem
@@ -499,7 +511,7 @@
                 @endforeach
             </div>
         </div>
-        <div style="position: absolute; left:50%; margin-left:-3rem; top: 0.7rem;">
+        <div style="position: absolute; left:50%; margin-left:-55px; top: 12px;">
             <a href="{{ url('/') }}">
                 <img src="/img/logo2.png" alt="Logo" width="110px" height="30px" />
             </a>
@@ -530,9 +542,9 @@
 
     <div class="relative flex items-top min-h-screen sm:items-center py-4 sm:pt-0">
 
-        <div class="max-w-6xl mx-auto sm:px-6 lg:px-8">
-            <div class="flex justify-center pt-8 sm:pt-0 mt-1" style="margin-left: 2rem">
-                <img src="./img/logo2.png" width="450rem" />
+        <div id="overflow" class="max-w-6xl mx-auto sm:px-6 lg:px-8">
+            <div style="overflow-x:hidden;" class="flex justify-center pt-8 sm:pt-0 mt-1" style="margin-left: 2rem">
+                <img style="overflow-x:hidden;" src="./img/logo2.png" width="450rem" />
             </div>
             <div class="text-center mt-3">
                 <h1 style="color: #141414;">@lang('welcome.welcome_message')</h1>

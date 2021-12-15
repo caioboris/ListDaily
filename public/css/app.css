@@ -211,9 +211,9 @@ a:not([href]):not([class]):hover {
     top: 0;
     z-index: 1;
     box-sizing: border-box;
-    height: 3rem;
-    padding: 1rem;
-    padding-left: 0.5rem;
+    height: 48px;
+    padding: 16px;
+    padding-left: 8px;
     display: flex !important;
     align-items: center !important;
     justify-content: space-between !important;
@@ -283,6 +283,27 @@ pre {
 
 figure {
     margin: 0 0 1rem;
+}
+
+@media (max-width: 360px) {
+    * {
+        font-size: 8px;
+    }
+}
+
+@media (min-width: 361px) and (max-width: 500px) {
+    * {
+        font-size: 10px;
+    }
+    html {
+        overflow-x: hidden;
+    }
+}
+
+@media (max-width: 1199px) {
+    .card {
+        width: 100% !important;
+    }
 }
 
 img {
@@ -7609,7 +7630,7 @@ button.bg-dark:focus {
         align-self: stretch !important;
     }
 }
-@media (min-width: 1200px) {
+@media (min-width: 901px) {
     .flex-xl-row {
         flex-direction: row !important;
     }

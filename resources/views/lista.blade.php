@@ -80,8 +80,8 @@
         </div>
 
         <div class="table-responsive shadow"
-            style="max-height:16rem;width: 90%;margin: auto; border: 2px solid #383838;
-                                                                                                                                                border-radius: 5px;">
+            style="max-height:30rem;width: 90%;margin: auto; border: 2px solid #383838;height: 30rem;
+                                                                                                                                                                border-radius: 5px;">
             <table class="table table-striped" style="width: 100%;">
                 <thead>
                     <tr>
