@@ -81,7 +81,7 @@
 
         <div class="table-responsive shadow"
             style="max-height:30rem;width: 90%;margin: auto; border: 2px solid #383838;height: 30rem;
-                                                                                                                                                                border-radius: 5px;">
+                                                                                                                                                                    border-radius: 5px;">
             <table class="table table-striped" style="width: 100%;">
                 <thead>
                     <tr>
@@ -315,7 +315,7 @@
                                     <div class="col-md-6">
                                         <select class="form-select form-select-sm" name="usuario_id"
                                             aria-label=".form-select-sm example">
-                                            <option selected>@lang('lista.select')</option>
+                                            <option value="null" selected>@lang('lista.select')</option>
                                             @foreach ($compartilhados as $key => $usuario)
                                                 @if ($usuario->id != \Auth::user()->id)
                                                     <option value={{ $usuario->id }}>{{ $usuario->name }}</option>

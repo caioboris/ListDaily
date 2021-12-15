@@ -17,9 +17,14 @@ class RemoverUsuarioController extends Controller
 
         $this->middleware('auth');
 
-        $user = User::find($request->input('usuario_id'));
-        $user->listas()->detach($request->input('id_lista'));
+        if($request->input('usuario_id')!='null'){
+            $user = User::find($request->input('usuario_id'));
+            $user->listas()->detach($request->input('id_lista'));
+            return redirect('lista')->with('status' , 'O usuário foi removido');
+        }else{
+            return redirect()->back()->with('status', 'Nenhum usuário foi selecionado!');
+        }
         
-        return redirect('lista')->with('status' , 'O usuário foi removido');
+        
     }
 }
