@@ -19,5 +19,6 @@ return [
     'password' => 'Password',
     'confirm' => 'Confirm password',
     'register' => 'Sign up',
+    'condition' => 'The password must have at least 8 characters',
 
 ];

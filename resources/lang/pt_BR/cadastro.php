@@ -19,5 +19,6 @@ return [
     'password' => 'Senha',
     'confirm' => 'Confirmar senha',
     'register' => 'Cadastrar',
+    'condition' => 'A senha deve ter pelo menos 8 caracteres',
 
 ];
