@@ -81,12 +81,12 @@
 
         <div class="table-responsive shadow"
             style="max-height:16rem;width: 90%;margin: auto; border: 2px solid #383838;
-                                                                                                                                            border-radius: 5px;">
+                                                                                                                                                border-radius: 5px;">
             <table class="table table-striped" style="width: 100%;">
                 <thead>
                     <tr>
                         <th scope="col"></th>
-                        <th scope="col">@lang('lista.nameproduct')</th>
+                        <th scope="col">@lang('lista.nameproducts')</th>
                         <th scope="col">@lang('lista.nameobs')</th>
                         <th scope="col">@lang('lista.price')</th>
                         <th scope="col">@lang('lista.actions')</th>
