@@ -70,6 +70,7 @@ class ProdutoController extends Controller
 
             $produto = new Produto;
 
+            $produto->codigo_de_barras = $request->input('codigo_de_barras');
             $produto->id_lista= $request->input('id_lista');
             $produto->produto_nome= $request->input('produto_nome');
             $produto->produto_obs= $request->input('produto_obs');
@@ -81,6 +82,7 @@ class ProdutoController extends Controller
 
             $produtos = new Produtos;
             
+            $produtos->codigo_de_barras = $produto->codigo_de_barras;
             $produtos->id = $produtoId->id;
             $produtos->id_lista = $produto->id_lista;
             $produtos->produto_nome = $produto->produto_nome;

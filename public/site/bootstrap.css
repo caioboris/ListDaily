@@ -154,13 +154,13 @@ sup {
 }
 
 a {
-  color: #0a0a0a;
+  color: #007bff;
   text-decoration: none;
   background-color: transparent;
 }
 a:hover {
-  color: #ff6961;
-  text-decoration:solid;
+  color: #0056b3;
+  text-decoration: underline;
 }
 
 a:not([href]):not([class]) {
@@ -6559,8 +6559,6 @@ button.bg-dark:focus {
   border: 0;
 }
 
-
-
 .embed-responsive-21by9::before {
   padding-top: 42.8571428571%;
 }
@@ -10004,9 +10002,4 @@ h3 {
     color: inherit;
     border-color: #dee2e6;
   }
-
-  .fundo-a{
-      background-color: #f15525;
-  }
-
 }
